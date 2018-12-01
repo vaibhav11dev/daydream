@@ -1,0 +1,116 @@
+/*-----------------------------------------------------------------
+[Header Media Styles]
+*/
+@media (max-width: 991px) {
+    .custom-logo{
+	width: 150px;
+    }
+    .inner-nav > li > a {
+	position: relative;
+	padding: 10px 0;
+    }
+    .sub-menu li a {
+	background: #fff;
+	color: #222 !important;
+    }
+    .sub-menu li a:hover {
+	background: #fff;
+    }
+    .sub-menu li > a:hover, 
+    .sub-menu li > a:focus, 
+    .sub-menu li.submenu-open > a {
+	color: #222 !important;
+    }
+    .has-submenu.submenu-open > a::after {
+	content: "\f107";
+    }
+    .module-header {
+        margin: 0 0 35px;
+    }
+    .variations tr {
+	width: 100%;
+	float: left;
+	margin-bottom: 10px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .hero-text h1 {
+        font-size: 30px !important;
+        line-height: 40px !important;
+    }
+    .hero-text p {
+        font-size: 16px !important;
+        line-height: 24px !important;
+    }
+    .hero-text .btn-lg {
+        padding: 9px 19px 9px;
+        font-size: 11px;
+    }
+    .dd-pricing.style-2 .dd-pricing-item .dd-pricing-header .title {
+	font-size: 18px;
+    }
+    .dd-testimonial-content {
+	padding: 10px 20px 10px;
+    }
+    .p-tb-content {
+	padding: 35px 0px;
+    }
+    .orderby-order-container.col-sm-4 {
+	width: 50%;
+    }
+    .catalog-ordering .col-sm-offset-5 {
+	margin-left: 20%;
+    }
+    .catalog-ordering .col-sm-3 {
+	width: 30%;
+    }
+    .cart-table .col-quantity .input-text {
+        width: 30%;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .orderby-order-container.col-sm-4 {
+	width: 50%;
+    }
+    .catalog-ordering .col-sm-offset-5 {
+	margin-left: 20%;
+    }
+    .catalog-ordering .col-sm-3 {
+	width: 30%;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero-text h1 {
+        font-size: 14px !important;
+        line-height: 22px !important;
+        padding-top: 50px;
+    }
+    .hero-text p {
+        font-size: 14px !important;
+        line-height: 20px !important;
+    }
+    .hero-text .m-t-50 {
+	margin-top: 30px !important;
+    }
+    .hero-text .btn-lg {
+        padding: 8px 18px 8px;
+        font-size: 10px;
+        margin-bottom: 10px;
+    }
+    .cart-table .col-quantity .input-text {
+        width: 100%;
+    }
+    .cart-table .size-woocommerce_thumbnail {
+        max-width: 90px;
+        height: 90px;
+    }
+    .woocommerce .woocommerce-MyAccount-navigation {
+        width: 100%;
+    }
+    .woocommerce .woocommerce-MyAccount-content {
+        width: 100%;
+    }
+}

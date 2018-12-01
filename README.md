@@ -1,16 +1,16 @@
 === daydream ===
 
-Contributors: themevedanta, vpparmar
-Tags: e-commerce, grid-layout, footer-widgets, blog, photography, buddypress, two-columns, left-sidebar, right-sidebar, full-width-template, sticky-post, threaded-comments, microformats, post-formats, flexible-header, featured-images, custom-background, custom-colors, custom-header, custom-menu, theme-options, translation-ready
+* Contributors: themevedanta, vpparmar
+* Tags: e-commerce, grid-layout, footer-widgets, blog, photography, buddypress, two-columns, left-sidebar, right-sidebar, full-width-template, sticky-post, threaded-comments, microformats, post-formats, flexible-header, featured-images, custom-background, custom-colors, custom-header, custom-menu, theme-options, translation-ready
 
-Requires at least: 4.8
-Tested up to: 4.9.8
-Stable tag: 1.0.2
-License: GNU General Public License v2 or later
-License URI: LICENSE
+* Requires at least: 4.8
+* Tested up to: 4.9.8
+* Stable tag: 1.0.2
+* License: GNU General Public License v2 or later
+* License URI: LICENSE
 
-'daydream' WordPress Theme, Copyright 2018 ThemeVedanta.
-'daydream' is distributed under the terms of the GNU GPL.
+-- 'daydream' WordPress Theme, Copyright 2018 www.themevedanta.com.
+-- 'daydream' is distributed under the terms of the GNU GPL.
 
 == Description ==
 

@@ -86,7 +86,7 @@ if ( !defined( 'ABSPATH' ) ) {
 		<?php if ( wc_tax_enabled() && !WC()->cart->display_prices_including_tax() ) : ?>
 			<?php if ( 'itemized' === get_option( 'woocommerce_tax_total_display' ) ) : ?>
 				<?php foreach ( WC()->cart->get_tax_totals() as $code => $tax ) : ?>
-					<tr class="tax-rate tax-rate-<?php echo sanitize_title( $code ); ?>">
+					<tr class="tax-rate tax-rate-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
 						<td><h5 class="m-0"><?php echo esc_html( $tax->label ); ?></h5></td>
 						<td><h5 class="m-0 color-gray text-right"><?php echo wp_kses_post( $tax->formatted_amount ); ?></h5></td>
 					</tr>

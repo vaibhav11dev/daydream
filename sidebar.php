@@ -15,10 +15,10 @@ if ( class_exists( 'Woocommerce' ) ) {
 }
 ?>
 
-<div id="secondary" class="aside sidebar <?php daydream_sidebar_class(); ?>"
+<div id="secondary" class="aside sidebar <?php esc_attr( daydream_sidebar_class() ); ?>"
      <?php
      if ( class_exists( 'Woocommerce' ) ):
-	     echo 'style="' . $daydream_sidebar_css . '"';
+	     echo 'style="' . esc_html( $daydream_sidebar_css ) . '"';
      endif;
      ?>>
 

@@ -3,7 +3,7 @@
  * Template part for displaying posts
  *
  *
- * @package daydream
+ * @package Daydream
  */
 if ( have_posts() ) :
 	if ( daydream_theme_mod( 'dd_blog_style' ) == 'grid' ) {

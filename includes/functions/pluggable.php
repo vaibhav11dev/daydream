@@ -6,7 +6,7 @@
  * These functions can be replaced via styles/plugins. If styles/plugins do
  * not redefine these functions, then these will be used instead.
  *
- * @package WPdaydream
+ * @package Daydream
  * @subpackage Core
  */
 /**

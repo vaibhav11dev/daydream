@@ -6,11 +6,11 @@
  * and the comment form.
  *
  *
- * @package daydream
+ * @package Daydream
  */
 if ( post_password_required() ) {
 	?>
-	<p class="password-protected alert"><?php _e( 'This post is password protected. Enter the password to view comments.', 'daydream' ); ?></p>
+	<p class="password-protected alert"><?php esc_html_e( 'This post is password protected. Enter the password to view comments.', 'daydream' ); ?></p>
 	<?php
 	return;
 }
@@ -26,7 +26,7 @@ if ( post_password_required() ) {
 			// If comments are open, but there are no comments.
 			if ( comments_open() ) {
 				echo '<h5 class="comment-title text-title text-uppercase bottom-line">';
-				_e( 'No Comments Yet', 'daydream' );
+				esc_html_e( 'No Comments Yet', 'daydream' );
 				echo '</h5>';
 			}
 		}
@@ -64,11 +64,6 @@ if ( post_password_required() ) {
 				<!--END .pings-list-->
 			</div>
 		<?php } ?>
-
-		<div class="navigation-links page-navigation clearfix row">
-			<div class="col-sm-6 col-md-6 nav-next"><?php previous_comments_link( '<div class="btn btn-left icon-arrow-left icon-big">'. _e( 'Older Comments', 'daydream' ) .'</div>' ); ?></div>
-			<div class="col-sm-6 col-md-6 nav-previous"><?php next_comments_link( '<div class="btn btn-right icon-arrow-right icon-big">'. _e( 'Newer Comments', 'daydream' ) .'</div>' ); ?></div>
-		</div>    
 
 		<?php
 	}

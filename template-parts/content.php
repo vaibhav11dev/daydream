@@ -3,7 +3,7 @@
  * Template part for displaying posts
  *
  *
- * @package daydream
+ * @package Daydream
  */
 ?>
 
@@ -42,7 +42,7 @@
 			if ( daydream_get_terms( 'cats' ) ) {
 				?>
 				<div class="col-sm-6">
-					<div class="entry-categories"> <?php echo daydream_get_terms( 'cats', ' ' ); ?></div>
+					<div class="entry-categories"> <?php echo wp_kses_post( daydream_get_terms( 'cats', ' ' ) ); ?></div>
 				</div>
 				<?php
 			}

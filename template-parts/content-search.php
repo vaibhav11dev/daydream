@@ -3,7 +3,7 @@
  * Template part for displaying results in search pages
  *
  *
- * @package daydream
+ * @package Daydream
  */
 ?>
 

@@ -121,7 +121,7 @@ if ( !function_exists( 'daydream_customizer_options' ) ) {
 						'subtitle'	 => __( '<h3>Content and One Sidebar Width</h3>', 'daydream' ),
 					),
 					array(
-						'subtitle'	 => sprintf( __( '<span class="subtitleription">These options apply for the following layouts</span> <img style="float:left, display:inline" src="%s2cl.png" /> <img style="float:left, display:inline" src="%s2cr.png" />', 'daydream' ), $global_value[ 'customizer_images' ], $global_value[ 'customizer_images' ] ),
+						'subtitle'	 => sprintf( __( '<span class="subtitleription">These options apply for the following layouts</span> <img style="float:left, display:inline" src="%1$s2cl.png" /> <img style="float:left, display:inline" src="%2$s2cr.png" />', 'daydream' ), $global_value[ 'customizer_images' ], $global_value[ 'customizer_images' ] ),
 						'id'		 => 'dd_info_consid1_widths',
 						'style'		 => 'notice',
 						'type'		 => 'info',
@@ -1257,83 +1257,6 @@ if ( !function_exists( 'daydream_customizer_options' ) ) {
 								'property'	 => 'color'
 							)
 						)
-					),
-				),
-			)
-			);
-
-			daydream_Kirki::setSection( $global_value[ 'opt_name' ], array(
-				'id'		 => 'dd-social-sharing-main-tab',
-				'title'		 => __( 'Social Sharing Box', 'daydream' ),
-				'iconfix'	 => 'no-icon',
-				'fields'	 => array(
-					array(
-						'subtitle'	 => __( 'Controls the tooltip position of the social iconfixs in the sharing box.', 'daydream' ),
-						'id'		 => 'dd_sharing_box_tooltip_position',
-						'type'		 => 'select',
-						'options'	 => array(
-							'top'	 => __( 'Top', 'daydream' ),
-							'right'	 => __( 'Right', 'daydream' ),
-							'bottom' => __( 'Bottom', 'daydream' ),
-							'left'	 => __( 'Left', 'daydream' ),
-							'none'	 => __( 'None', 'daydream' ),
-						),
-						'title'		 => __( 'Social Sharing Box Icons Tooltip Position', 'daydream' ),
-						'default'	 => 'top',
-					),
-					array(
-						'subtitle'	 => __( 'Show the facebook sharing iconfix in blog posts.', 'daydream' ),
-						'id'		 => 'dd_sharing_facebook',
-						'type'		 => 'switch',
-						'on'		 => __( 'Enabled', 'daydream' ),
-						'off'		 => __( 'Disabled', 'daydream' ),
-						'default'	 => 1,
-						'title'		 => __( 'Facebook', 'daydream' ),
-					),
-					array(
-						'subtitle'	 => __( 'Show the twitter sharing iconfix in blog posts.', 'daydream' ),
-						'id'		 => 'dd_sharing_twitter',
-						'type'		 => 'switch',
-						'on'		 => __( 'Enabled', 'daydream' ),
-						'off'		 => __( 'Disabled', 'daydream' ),
-						'default'	 => 1,
-						'title'		 => __( 'Twitter', 'daydream' ),
-					),
-					array(
-						'subtitle'	 => __( 'Show the linkedin sharing iconfix in blog posts.', 'daydream' ),
-						'id'		 => 'dd_sharing_linkedin',
-						'type'		 => 'switch',
-						'on'		 => __( 'Enabled', 'daydream' ),
-						'off'		 => __( 'Disabled', 'daydream' ),
-						'default'	 => 1,
-						'title'		 => __( 'LinkedIn', 'daydream' ),
-					),
-					array(
-						'subtitle'	 => __( 'Show the g+ sharing iconfix in blog posts.', 'daydream' ),
-						'id'		 => 'dd_sharing_google',
-						'type'		 => 'switch',
-						'on'		 => __( 'Enabled', 'daydream' ),
-						'off'		 => __( 'Disabled', 'daydream' ),
-						'default'	 => 1,
-						'title'		 => __( 'Google Plus', 'daydream' ),
-					),
-					array(
-						'subtitle'	 => __( 'Show the pinterest sharing iconfix in blog posts.', 'daydream' ),
-						'id'		 => 'dd_sharing_pinterest',
-						'type'		 => 'switch',
-						'on'		 => __( 'Enabled', 'daydream' ),
-						'off'		 => __( 'Disabled', 'daydream' ),
-						'default'	 => 1,
-						'title'		 => __( 'Pinterest', 'daydream' ),
-					),
-					array(
-						'subtitle'	 => __( 'Show the email sharing iconfix in blog posts.', 'daydream' ),
-						'id'		 => 'dd_sharing_email',
-						'type'		 => 'switch',
-						'on'		 => __( 'Enabled', 'daydream' ),
-						'off'		 => __( 'Disabled', 'daydream' ),
-						'default'	 => 1,
-						'title'		 => __( 'Email', 'daydream' ),
 					),
 				),
 			)

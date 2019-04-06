@@ -8,7 +8,7 @@
  * different template.
  *
  *
- * @package daydream
+ * @package Daydream
  */
 get_header();
 ?>

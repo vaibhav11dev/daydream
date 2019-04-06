@@ -4,7 +4,7 @@
  * daydream functions and definitions
  *
  *
- * @package daydream
+ * @package Daydream
  */
 define( 'DAYDREAM_IMAGEPATH', get_template_directory_uri() . '/customizer/assets/images/' );
 define( 'DAYDREAM_VERSION', '1.0.0' );
@@ -121,9 +121,6 @@ require get_parent_theme_file_path( '/includes/metaboxes/metaboxes.php' );
 
 // load Semantic Classes functions
 require get_parent_theme_file_path( '/includes/extensions/semantic-classes.php' );
-
-// Post Link Extensions
-require get_parent_theme_file_path( '/includes/extensions/post-link-plus.php' );
 
 // load the WP daydream Hook System
 require get_parent_theme_file_path( '/includes/functions/hooks.php' );

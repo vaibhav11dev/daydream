@@ -20,11 +20,11 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 $dd_woocommerce_layout	 = daydream_theme_mod( 'dd_woocommerce_layout' );
-$woo_product_layout		 = (12 / $dd_woocommerce_layout);
+$woo_product_layout		 = (12 / (int)$dd_woocommerce_layout);
 
 $shop_col_class = 'col-sm-' . $woo_product_layout . ' col-md-' . $woo_product_layout . ' col-lg-' . $woo_product_layout . '';
 ?>
-<div class="<?php echo $shop_col_class ?>">
+<div class="<?php echo esc_attr( $shop_col_class ) ?>">
 	<div <?php wc_product_cat_class( '', $category ); ?>>
 		<?php
 		/**

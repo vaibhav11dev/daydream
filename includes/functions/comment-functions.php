@@ -55,13 +55,13 @@ function daydream_discussion_title( $type = NULL, $echo = true ) {
 	$class	 = 'text-title text-uppercase bottom-line';
 
 	if ( $number ) {
-		$discussion_title = '<' . $tag . ' class="' . esc_attr($type) . '-title ' . esc_attr($class) . '">' . $number . '</' . $tag . '>';
+		$discussion_title = '<' . $tag . ' class="' . esc_attr( $type ) . '-title ' . esc_attr( $class ) . '">' . $number . '</' . $tag . '>';
 	}
 
 	// Available filter: daydream_discussion_title
 	$daydream_discussion_title = apply_filters( 'daydream_discussion_title', (string) $discussion_title );
 
-	return ( $echo ) ? print( $daydream_discussion_title ) : $daydream_discussion_title;
+	return ( $echo ) ? print(  wp_kses_post( $daydream_discussion_title ) ) : wp_kses_post( $daydream_discussion_title );
 }
 
 /**
@@ -78,14 +78,14 @@ function daydream_count( $type = NULL, $echo = true ) {
 	global $wp_query;
 
 	$comment_count	 = $wp_query->comment_count;
-	$ping_count		 = count( $wp_query->comments_by_type[ 'pings' ] );
+	$ping_count	 = count( $wp_query->comments_by_type[ 'pings' ] );
 
 	switch ( $type ):
 		case 'comment':
-			return ( $echo ) ? print( $comment_count ) : $comment_count;
+			return ( $echo ) ? print( esc_html( $comment_count ) ) : esc_html( $comment_count );
 			break;
 		case 'pings':
-			return ( $echo ) ? print( $ping_count ) : $ping_count;
+			return ( $echo ) ? print( esc_html( $ping_count ) ) : esc_html( $ping_count );
 			break;
 	endswitch;
 }
@@ -106,7 +106,7 @@ function daydream_comment_author( $meta_format = '%avatar%' ) {
 
 	// No keywords to replace
 	if ( strpos( $meta_format, '%' ) === false ) {
-		echo $meta_format;
+		echo wp_kses_post( $meta_format );
 	} else {
 		$open	 = '<!--BEGIN .comment-author-->';
 		$open	 .= '<div class="comment-avatar">';
@@ -131,7 +131,7 @@ function daydream_comment_author( $meta_format = '%avatar%' ) {
 
 		$output = join( '', $meta_array );
 		if ( $output ) {
-			echo $open . $output . $close;
+			echo wp_kses_post( $open . $output . $close );
 		}
 	}
 }
@@ -150,7 +150,7 @@ function daydream_comment_meta( $meta_format = '%date% %reply%' ) {
 
 	// No keywords to replace
 	if ( strpos( $meta_format, '%' ) === false ) {
-		echo $meta_format;
+		echo wp_kses_post( $meta_format );
 	} else {
 		$open	 = '<!--BEGIN .comment-meta-->';
 		$open	 .= '<div class="comment-tools">';
@@ -186,7 +186,7 @@ function daydream_comment_meta( $meta_format = '%date% %reply%' ) {
 		}
 		$output = join( '', $meta_array );
 		if ( $output )
-			echo $open . $output . $close;
+			echo wp_kses_post( $open . $output . $close );
 	}
 }
 
@@ -196,8 +196,8 @@ function daydream_comment_meta( $meta_format = '%date% %reply%' ) {
  */
 function daydream_comment_text() {
 	echo '<div class="comment-content">';
-	echo '<h5>' . esc_html(daydream_comment_name()) . '</h5>';
-	echo '<p>' . esc_html(comment_text()) . '</p>';
+	echo '<h5>' . wp_kses_post( daydream_comment_name() ) . '</h5>';
+	echo '<p>' . wp_kses_post( comment_text() ) . '</p>';
 	echo '</div>';
 }
 
@@ -208,7 +208,7 @@ function daydream_comment_text() {
 function daydream_comment_moderation() {
 	global $comment;
 	if ( $comment->comment_approved == '0' )
-		echo '<p class="comment-unapproved moderation alert">' . __( 'Your comment is awaiting moderation', 'daydream' ) . '</p>';
+		echo '<p class="comment-unapproved moderation alert">' . esc_html_e( 'Your comment is awaiting moderation', 'daydream' ) . '</p>';
 }
 
 /**
@@ -229,11 +229,11 @@ function daydream_comment_navigation() {
 		$paged_links = paginate_comments_links( array(
 			'type'		 => 'array',
 			'echo'		 => false,
-			'prev_text'	 => '&laquo; Previous Page',
-			'next_text'	 => 'Next Page &raquo;' ) );
+			'prev_text'	 => esc_html_e( '&laquo; Previous Page', 'daydream' ),
+			'next_text'	 => esc_html_e( 'Next Page &raquo;', 'daydream' ) ) );
 
 		if ( $paged_links )
-			$comment_navigation = $open . join( ' ', $paged_links ) . $close;
+			$comment_navigation = wp_kses_post( $open . join( ' ', $paged_links ) . $close );
 	}
 	else {
 		$comment_navigation = NULL;
@@ -248,13 +248,13 @@ function daydream_comment_navigation() {
  *
  */
 function daydream_comments_callback( $comment, $args, $depth ) {
-	$GLOBALS[ 'comment' ]		 = $comment;
-	$GLOBALS[ 'comment_depth' ]	 = $depth;
-	$tag						 = apply_filters( 'daydream_comments_list_tag', (string) 'div' );
+	//	$GLOBALS[ 'comment' ]		 = $comment;
+	//	$GLOBALS[ 'comment_depth' ]	 = $depth;
+	$tag = apply_filters( 'daydream_comments_list_tag', (string) 'div' );
 	?>
 
 	<!--BEING .comment-->
-	<<?php echo $tag; ?> class="<?php esc_attr(semantic_comments()); ?>" id="comment-<?php echo esc_attr(comment_ID()); ?>">
+	<<?php echo esc_html( $tag ); ?> class="<?php esc_attr( semantic_comments() ); ?>" id="comment-<?php echo esc_attr( comment_ID() ); ?>">
 	<?php
 	daydream_hook_comments();
 }
@@ -267,7 +267,7 @@ function daydream_comments_endcallback() {
 	// Available filter: daydream_comments_list_tag
 	$tag = apply_filters( 'daydream_comments_list_tag', (string) 'div' );
 	echo "<!--END .comment-->";
-	echo "</" . $tag . ">";
+	echo "</" . esc_html( $tag ) . ">";
 	// Available action: daydream_hook_inside_comments_loop
 	do_action( 'daydream_hook_inside_comments_loop' );
 }
@@ -277,26 +277,26 @@ function daydream_comments_endcallback() {
  *
  */
 function daydream_pings_callback( $comment, $args, $depth ) {
-	$GLOBALS[ 'comment' ]	 = $comment;
+	//	$GLOBALS[ 'comment' ]	 = $comment;
 	// Available filter: daydream_pings_callback_tag
-	$tag					 = apply_filters( 'daydream_pings_callback_tag', (string) 'div' );
+	$tag	 = apply_filters( 'daydream_pings_callback_tag', (string) 'div' );
 	// Available filter: daydream_pings_callback_time
-	$time					 = apply_filters( 'daydream_pings_callback_time', (string) ' on ' );
+	$time	 = apply_filters( 'daydream_pings_callback_time', (string) ' on ' );
 	// Available filter: daydream_pings_callback_time
-	$when					 = apply_filters( 'daydream_pings_callback_when', (string) ' at ' );
+	$when	 = apply_filters( 'daydream_pings_callback_when', (string) ' at ' );
 
 	if ( $comment->comment_approved == '0' )
-		echo '<p class="ping-unapproved moderation alert">' . __( 'Your trackback is awaiting moderation.', 'daydream' ) . '</p>';
+		echo '<p class="ping-unapproved moderation alert">' . esc_html_e( 'Your trackback is awaiting moderation.', 'daydream' ) . '</p>';
 	?>
 
 	<!--BEING .pings-->
-	<<?php echo $tag; ?> class="<?php echo esc_attr(semantic_comments()); ?>" id="ping-<?php echo esc_attr($comment->comment_ID); ?>">
+	<<?php echoesc_html( $tag ); ?> class="<?php echo esc_attr( semantic_comments() ); ?>" id="ping-<?php echo esc_attr( $comment->comment_ID ); ?>">
 	<?php
 	comment_author_link();
-	echo $time;
-	?><a class="trackback-time" href="<?php esc_url(comment_link()); ?>"><?php
+	echo esc_html( $time );
+	?><a class="trackback-time" href="<?php esc_url( comment_link() ); ?>"><?php
 		comment_date();
-		echo $when;
+		echo esc_html( $when );
 		comment_time();
 		?></a>
 	<?php
@@ -310,7 +310,7 @@ function daydream_pings_endcallback() {
 	// Available filter: daydream_pings_callback_tag
 	$tag = apply_filters( 'daydream_pings_callback_tag', (string) 'div' );
 	echo "<!--END .pings-list-->";
-	echo "</" . $tag . ">";
+	echo "</" . esc_html( $tag ) . ">";
 	// Available action: daydream_hook_inside_pings_list
 	do_action( 'daydream_hook_inside_pings_list' );
 }
@@ -353,13 +353,13 @@ function daydream_custom_comment_form() {
 
 	$fields = array();
 
-	$fields[ 'author' ]	 = '<div class="comment-form-author form-group"><input id="author" class="form-control" name="author" type="text" value="' . esc_attr( $commenter[ 'comment_author' ] ) . '" placeholder="' . esc_html__( 'Name*', 'daydream' ) . '" ' . $aria_req . $html_req . ' aria-label="' . esc_attr__( 'Name', 'daydream' ) . '"/></div>';
-	$fields[ 'email' ]	 = '<div class="comment-form-email form-group"><input id="email" class="form-control" name="email" ' . ( $html5 ? 'type="email"' : 'type="text"' ) . ' value="' . esc_attr( $commenter[ 'comment_author_email' ] ) . '" placeholder="' . esc_html__( 'Email*', 'daydream' ) . '" ' . $aria_req . $html_req . ' aria-label="' . esc_attr__( 'Email', 'daydream' ) . '"/></div>';
-	$fields[ 'url' ]		 = '<div class="comment-form-url form-group"><input id="url" class="form-control" name="url" ' . ( $html5 ? 'type="url"' : 'type="text"' ) . ' value="' . esc_attr( $commenter[ 'comment_author_url' ] ) . '" placeholder="' . esc_html__( 'Website', 'daydream' ) . '" aria-label="' . esc_attr__( 'URL', 'daydream' ) . '" /></div>';
+	$fields[ 'author' ]	 = '<div class="comment-form-author form-group"><input id="author" class="form-control" name="author" type="text" value="' . esc_attr( $commenter[ 'comment_author' ] ) . '" placeholder="' . esc_attr_e( 'Name*', 'daydream' ) . '" ' . $aria_req . $html_req . ' aria-label="' . esc_attr__( 'Name', 'daydream' ) . '"/></div>';
+	$fields[ 'email' ]	 = '<div class="comment-form-email form-group"><input id="email" class="form-control" name="email" ' . ( $html5 ? 'type="email"' : 'type="text"' ) . ' value="' . esc_attr( $commenter[ 'comment_author_email' ] ) . '" placeholder="' . esc_attr_e( 'Email*', 'daydream' ) . '" ' . $aria_req . $html_req . ' aria-label="' . esc_attr__( 'Email', 'daydream' ) . '"/></div>';
+	$fields[ 'url' ]	 = '<div class="comment-form-url form-group"><input id="url" class="form-control" name="url" ' . ( $html5 ? 'type="url"' : 'type="text"' ) . ' value="' . esc_attr( $commenter[ 'comment_author_url' ] ) . '" placeholder="' . esc_attr_e( 'Website', 'daydream' ) . '" aria-label="' . esc_attr__( 'URL', 'daydream' ) . '" /></div>';
 
 	$comments_args = array(
 		'fields'				 => apply_filters( 'comment_form_default_fields', $fields ),
-		'comment_field'			 => '<div class="comment-form-comment form-group"><textarea id="comment" name="comment" placeholder="Comment" class="form-control" rows="6" aria-required="true"></textarea></div>',
+		'comment_field'			 => '<div class="comment-form-comment form-group"><textarea id="comment" name="comment" placeholder="' . esc_attr_e('Comment', 'daydream') . '" class="form-control" rows="6" aria-required="true"></textarea></div>',
 		'title_reply'			 => esc_html__( 'Leave A Comment', 'daydream' ),
 		'title_reply_to'		 => esc_html__( 'Leave A Comment', 'daydream' ),
 		/* translators: Opening and closing link tags. */

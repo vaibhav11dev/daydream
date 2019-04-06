@@ -41,24 +41,24 @@ if ( !class_exists( 'daydream_Customizer' ) ) {
 	class daydream_Customizer {
 
 		function __construct() {
-			add_action( 'customize_controls_enqueue_scripts', array( $this, 'custom_customize_enqueue' ), 9999 );
+			add_action( 'customize_controls_enqueue_scripts', array( $this, 'daydream_custom_customize_enqueue' ), 9999 );
 			add_action( 'customize_controls_print_footer_scripts', array(
 				$this,
-				'filter_ajax_url_for_customizer_live_preview'
+				'daydream_filter_ajax_url_for_customizer_live_preview'
 			), 9999 );
 		}
 
-		public function filter_ajax_url_for_customizer_live_preview() {
+		public function daydream_filter_ajax_url_for_customizer_live_preview() {
 			?>
 			<script type="text/javascript">
 			    if ( _wpCustomizeSettings.theme.active == false ) {
-				ajaxurl = '<?php echo admin_url( 'admin-ajax.php' ); ?>?customize_changeset_uuid=' + _wpCustomizeSettings.changeset.uuid + '&customize_theme=' + _wpCustomizeSettings.theme.stylesheet;
+				ajaxurl = '<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>?customize_changeset_uuid=' + _wpCustomizeSettings.changeset.uuid + '&customize_theme=' + _wpCustomizeSettings.theme.stylesheet;
 			    }
 			</script>
 			<?php
 		}
 
-		public function custom_customize_enqueue() {
+		public function daydream_custom_customize_enqueue() {
 			wp_enqueue_style( 'daydream-customizer-css', get_template_directory_uri() . '/customizer/assets/css/customizer.css', array(), '', 'all' );
 			wp_enqueue_script( 'daydream-customizer-js', get_template_directory_uri() . '/customizer/assets/js/customizer.js', array(
 				'customize-preview',

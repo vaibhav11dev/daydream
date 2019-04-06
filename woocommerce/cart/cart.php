@@ -13,7 +13,7 @@
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @author  WooThemes
  * @package WooCommerce/Templates
- * @version 3.4.0
+ * @version 3.5.0
  */
 if ( !defined( 'ABSPATH' ) ) {
 	exit;
@@ -107,11 +107,13 @@ do_action( 'woocommerce_before_cart' );
 										), $_product, false );
 									}
 
+                                                                        // @codingStandardsIgnoreLine
 									echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item );
 									?></td>
 
 								<td class="product-subtotal col-subtotal" data-title="<?php esc_attr_e( 'Total', 'daydream' ); ?>">
 									<?php
+                                                                        // @codingStandardsIgnoreLine
 									echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item[ 'quantity' ] ), $cart_item, $cart_item_key );
 									?>
 								</td>

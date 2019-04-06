@@ -3,7 +3,7 @@
  * Template part for displaying a message that posts cannot be found
  *
  *
- * @package daydream
+ * @package Daydream
  */
 ?>
 
@@ -29,6 +29,7 @@
 			?>
 
 			<p><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'daydream' ); ?></p>
+			<button id="modal-search" type="button" name="search" class="btn btn-base">Search</button>
 			<?php
 			get_search_form();
 
@@ -36,6 +37,7 @@
 			?>
 
 			<p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'daydream' ); ?></p>
+			<button id="modal-search" type="button" name="search" class="btn btn-base">Search</button>
 			<?php
 			get_search_form();
 

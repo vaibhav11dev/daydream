@@ -1,3 +1,10 @@
+<?php
+/**
+ * Custom styles for theme meta-field
+ *
+ * @package Daydream
+ */
+?>
 <style type='text/css'>
 	.dd_metabox {
 		padding: 10px 10px 0px 10px;

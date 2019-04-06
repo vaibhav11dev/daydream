@@ -5,7 +5,7 @@
  * Contains the closing of the .wrapper div and all content after.
  *
  *
- * @package daydream
+ * @package Daydream
  */
 $dd_footer_widget_col	 = daydream_theme_mod( 'dd_footer_widget_col', 'disable' );
 $daydream_footer_css	 = '';
@@ -30,28 +30,28 @@ if ( ($dd_footer_widget_col != "disable" ) ) {
 
 		<div class="row">
 			<?php if ( $daydream_footer_css !== '' ): ?>
-				<div class="<?php echo esc_attr($daydream_footer_css); ?>">
+				<div class="<?php echo esc_attr( $daydream_footer_css ); ?>">
 					<?php
 					if ( !dynamic_sidebar( 'footer-1' ) ) :
 					endif;
 					?>
 				</div>
 
-				<div class="<?php echo esc_attr($daydream_footer_css); ?>">
+				<div class="<?php echo esc_attr( $daydream_footer_css ); ?>">
 					<?php
 					if ( !dynamic_sidebar( 'footer-2' ) ) :
 					endif;
 					?>
 				</div>
 
-				<div class="<?php echo esc_attr($daydream_footer_css); ?>">
+				<div class="<?php echo esc_attr( $daydream_footer_css ); ?>">
 					<?php
 					if ( !dynamic_sidebar( 'footer-3' ) ) :
 					endif;
 					?>
 				</div>
 
-				<div class="<?php echo esc_attr($daydream_footer_css); ?>">
+				<div class="<?php echo esc_attr( $daydream_footer_css ); ?>">
 					<?php
 					if ( !dynamic_sidebar( 'footer-4' ) ) :
 					endif;
@@ -117,7 +117,7 @@ if ( class_exists( 'Woocommerce' ) && $dd_woocommerce_cart_link_main_nav ) {
 				<div class="off-canvas-cart-content">
 					<div class="off-canvas-cart-content-wrap">
 
-						<?php _e( 'Your cart is currently empty.', 'daydream' ); ?>
+						<?php esc_html_e( 'Your cart is currently empty.', 'daydream' ); ?>
 
 					</div>
 				</div>
@@ -149,7 +149,8 @@ if ( class_exists( 'Woocommerce' ) && $dd_woocommerce_cart_link_main_nav ) {
 							<div class="off-canvas-cart-item">
 								<div class="off-canvas-cart-item-trash">
 									<?php
-									echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s"><i class="icon-trash icons"></i></a>', esc_url( wc_get_cart_remove_url( $cart_item_key ) ), __( 'Remove this item', 'daydream' ) ), $cart_item_key );
+									$trash = apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s"><i class="icon-trash icons"></i></a>', esc_url( wc_get_cart_remove_url( $cart_item_key ) ), __( 'Remove this item', 'daydream' ) ), $cart_item_key );
+                                                                        echo $trash
 									?>
 								</div>
 								<div class="off-canvas-cart-item-thumbnail">
@@ -159,8 +160,8 @@ if ( class_exists( 'Woocommerce' ) && $dd_woocommerce_cart_link_main_nav ) {
 										?></a>
 								</div>
 								<div class="off-canvas-cart-item-title">
-									<h5 class="m-b-5"><a href="#"><?php echo esc_html($cart_item[ 'data' ]->get_name()); ?></a></h5>
-									<?php echo $cart_item[ 'quantity' ]; ?> x <?php echo get_woocommerce_currency_symbol() . $cart_item[ 'data' ]->get_price(); ?>
+									<h5 class="m-b-5"><a href="#"><?php echo esc_html( $cart_item[ 'data' ]->get_name() ); ?></a></h5>
+									<?php echo esc_html( $cart_item[ 'quantity' ] ); ?> x <?php echo get_woocommerce_currency_symbol() . esc_html( $cart_item[ 'data' ]->get_price() ); ?>
 								</div>
 							</div>
 							<!-- END ITEM -->
@@ -173,7 +174,7 @@ if ( class_exists( 'Woocommerce' ) && $dd_woocommerce_cart_link_main_nav ) {
 					<div class="off-canvas-cart-info">
 						<div class="row">
 							<div class="col-xs-6">
-								<h4 class="m-0"><?php _e( 'Total:', 'daydream' ); ?></h4>
+								<h4 class="m-0"><?php esc_html_e( 'Total:', 'daydream' ); ?></h4>
 							</div>
 							<div class="col-xs-6">
 								<h4 class="m-0 text-right"><?php echo wc_price( $woocommerce->cart->cart_contents_total ); ?></h4>
@@ -182,8 +183,8 @@ if ( class_exists( 'Woocommerce' ) && $dd_woocommerce_cart_link_main_nav ) {
 					</div>
 
 					<div class="off-canvas-cart-control">
-						<a href="<?php echo esc_url( get_permalink( get_option( 'woocommersc_uce_checkout_page_id' ) ) ); ?>" class="btn btn-lg btn-block btn-outline btn-fade btn-round btn-dark"><?php _e( 'Checkout', 'daydream' ); ?></a>
-						<a href="<?php echo esc_url( get_permalink( get_option( 'woocommerce_cart_page_id' ) ) ); ?>" class="btn btn-lg btn-block btn-round btn-base"><?php _e( 'Edit Cart', 'daydream' ); ?></a>
+						<a href="<?php echo esc_url( get_permalink( get_option( 'woocommersc_uce_checkout_page_id' ) ) ); ?>" class="btn btn-lg btn-block btn-outline btn-fade btn-round btn-dark"><?php esc_html_e( 'Checkout', 'daydream' ); ?></a>
+						<a href="<?php echo esc_url( get_permalink( get_option( 'woocommerce_cart_page_id' ) ) ); ?>" class="btn btn-lg btn-block btn-round btn-base"><?php esc_html_e( 'Edit Cart', 'daydream' ); ?></a>
 					</div>
 				</div>
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Daydream - About page class
  *
@@ -6,68 +7,78 @@
  * @subpackage Admin
  * @since 1.0.0
  */
-
 class Daydream_About_Page {
+
 	/**
 	 * Define the version of the class.
 	 *
 	 * @var string $version The Daydream_About_Page class version.
 	 */
 	private $version = '1.0.0';
+
 	/**
 	 * Used for loading the texts and setup the actions inside the page.
 	 *
 	 * @var array $config The configuration array for the theme used.
 	 */
 	public $config;
+
 	/**
 	 * Get the theme name using wp_get_theme.
 	 *
 	 * @var string $theme_name The theme name.
 	 */
 	private $theme_name;
+
 	/**
 	 * Get the theme slug ( theme folder name ).
 	 *
 	 * @var string $theme_slug The theme slug.
 	 */
 	private $theme_slug;
+
 	/**
 	 * The current theme object.
 	 *
 	 * @var WP_Theme $theme The current theme.
 	 */
 	private $theme;
+
 	/**
 	 * Holds the theme version.
 	 *
 	 * @var string $theme_version The theme version.
 	 */
 	private $theme_version;
+
 	/**
 	 * Define the menu item name for the page.
 	 *
 	 * @var string $menu_name The name of the menu name under Appearance settings.
 	 */
 	private $menu_name;
+
 	/**
 	 * Define the page title name.
 	 *
 	 * @var string $page_name The title of the About page.
 	 */
 	private $page_name;
+
 	/**
 	 * Define the page tabs.
 	 *
 	 * @var array $tabs The page tabs.
 	 */
 	private $tabs;
+
 	/**
 	 * Define the html notification content displayed upon activation.
 	 *
 	 * @var string $notification The html notification content.
 	 */
 	private $notification;
+
 	/**
 	 * The single instance of Daydream_About_Page
 	 *
@@ -83,9 +94,9 @@ class Daydream_About_Page {
 	 * @param array $config The configuration array.
 	 */
 	public static function init( $config ) {
-		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Daydream_About_Page ) ) {
+		if ( !isset( self::$instance ) && !( self::$instance instanceof Daydream_About_Page ) ) {
 			self::$instance = new Daydream_About_Page();
-			if ( ! empty( $config ) && is_array( $config ) ) {
+			if ( !empty( $config ) && is_array( $config ) ) {
 				self::$instance->config = $config;
 				self::$instance->setup_config();
 				self::$instance->setup_actions();
@@ -104,16 +115,15 @@ class Daydream_About_Page {
 			}
 			$this->theme = $theme->parent();
 		} else {
-			$this->theme_name = $theme->get( 'Name' );
-			$this->theme      = $theme->parent();
+			$this->theme_name	 = $theme->get( 'Name' );
+			$this->theme		 = $theme->parent();
 		}
 		$this->theme_version = $theme->get( 'Version' );
-		$this->theme_slug    = $theme->get_template();
-		$this->menu_name     = isset( $this->config['menu_name'] ) ? $this->config['menu_name'] : 'About ' . $this->theme_name;
-		$this->page_name     = isset( $this->config['page_name'] ) ? $this->config['page_name'] : 'About ' . $this->theme_name;
-		$this->notification  = isset( $this->config['notification'] ) ? $this->config['notification'] : ( apply_filters( 'daydream_welcome_notice_filter', ( '<p>' . sprintf( 'Welcome! Thank you for choosing %1$s! To fully take advantage of the best our theme can offer please make sure you visit our %2$swelcome page%3$s.', $this->theme_name, '<a href="' . esc_url( admin_url( 'themes.php?page=' . $this->theme_slug . '-welcome' ) ) . '">', '</a>' ) . '</p><p><a href="' . esc_url( admin_url( 'themes.php?page=' . $this->theme_slug . '-welcome' ) ) . '" class="button" style="text-decoration: none;">' . sprintf( 'Get started with %s', $this->theme_name ) . '</a></p>' ) ) );
-		$this->tabs          = isset( $this->config['tabs'] ) ? $this->config['tabs'] : array();
-
+		$this->theme_slug	 = $theme->get_template();
+		$this->menu_name	 = isset( $this->config[ 'menu_name' ] ) ? $this->config[ 'menu_name' ] : 'About ' . $this->theme_name;
+		$this->page_name	 = isset( $this->config[ 'page_name' ] ) ? $this->config[ 'page_name' ] : 'About ' . $this->theme_name;
+		$this->notification	 = isset( $this->config[ 'notification' ] ) ? $this->config[ 'notification' ] : ( apply_filters( 'daydream_welcome_notice_filter', ( '<p>' . sprintf( 'Welcome! Thank you for choosing %1$s! To fully take advantage of the best our theme can offer please make sure you visit our %2$swelcome page%3$s.', $this->theme_name, '<a href="' . esc_url( admin_url( 'themes.php?page=' . $this->theme_slug . '-welcome' ) ) . '">', '</a>' ) . '</p><p><a href="' . esc_url( admin_url( 'themes.php?page=' . $this->theme_slug . '-welcome' ) ) . '" class="button" style="text-decoration: none;">' . sprintf( 'Get started with %s', $this->theme_name ) . '</a></p>' ) ) );
+		$this->tabs			 = isset( $this->config[ 'tabs' ] ) ? $this->config[ 'tabs' ] : array();
 	}
 
 	/**
@@ -121,18 +131,18 @@ class Daydream_About_Page {
 	 */
 	public function setup_actions() {
 
-		add_action( 'admin_menu', array( $this, 'register' ) );
+		add_action( 'admin_menu', array( $this, 'daydream_register' ) );
 		/* activation notice */
-		add_action( 'load-themes.php', array( $this, 'activation_admin_notice' ) );
+		add_action( 'load-themes.php', array( $this, 'daydream_activation_admin_notice' ) );
 		/* enqueue script and style for about page */
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'daydream_enqueue' ) );
 
 		/* ajax callback for dismissable required actions */
 		add_action(
-			'wp_ajax_dd_about_page_dismiss_required_action', array(
-				$this,
-				'dismiss_required_action_callback',
-			)
+		'wp_ajax_dd_about_page_dismiss_required_action', array(
+			$this,
+			'daydream_dismiss_required_action_callback',
+		)
 		);
 	}
 
@@ -153,18 +163,17 @@ class Daydream_About_Page {
 		}
 	}
 
-
 	/**
 	 * Register the menu page under Appearance menu.
 	 */
-	public function register() {
-		if ( ! empty( $this->menu_name ) && ! empty( $this->page_name ) ) {
+	public function daydream_register() {
+		if ( !empty( $this->menu_name ) && !empty( $this->page_name ) ) {
 
 			$no_of_actions = 0;
 
 			$actions = $this->get_required_actions();
 
-			if ( ! empty( $actions ) ) {
+			if ( !empty( $actions ) ) {
 				$no_of_actions = count( $actions );
 			}
 			$title = $this->page_name;
@@ -174,10 +183,10 @@ class Daydream_About_Page {
 			}
 
 			add_theme_page(
-				$this->menu_name, $title, 'activate_plugins', $this->theme_slug . '-welcome', array(
-					$this,
-					'about_page_render',
-				)
+			$this->menu_name, $title, 'activate_plugins', $this->theme_slug . '-welcome', array(
+				$this,
+				'about_page_render',
+			)
 			);
 		}
 	}
@@ -185,9 +194,9 @@ class Daydream_About_Page {
 	/**
 	 * Adds an admin notice upon successful activation.
 	 */
-	public function activation_admin_notice() {
+	public function daydream_activation_admin_notice() {
 		global $pagenow;
-		if ( is_admin() && ( 'themes.php' == $pagenow ) && isset( $_GET['activated'] ) ) {
+		if ( is_admin() && ( 'themes.php' == $pagenow ) && isset( $_GET[ 'activated' ] ) ) {
 			add_action( 'admin_notices', array( $this, 'daydream_about_page_welcome_admin_notice' ), 99 );
 		}
 	}
@@ -196,7 +205,7 @@ class Daydream_About_Page {
 	 * Display an admin notice linking to the about page
 	 */
 	public function daydream_about_page_welcome_admin_notice() {
-		if ( ! empty( $this->notification ) ) {
+		if ( !empty( $this->notification ) ) {
 			echo '<div class="updated notice is-dismissible">';
 			echo wp_kses_post( $this->notification );
 			echo '</div>';
@@ -215,12 +224,12 @@ class Daydream_About_Page {
 	 * Render about page header
 	 */
 	private function render_header() {
-		if ( ! empty( $this->config['welcome_title'] ) ) {
-			$title = $this->config['welcome_title'];
+		if ( !empty( $this->config[ 'welcome_title' ] ) ) {
+			$title = $this->config[ 'welcome_title' ];
 		}
 
-		if ( ! empty( $this->config['welcome_content'] ) ) {
-			$content = $this->config['welcome_content'];
+		if ( !empty( $this->config[ 'welcome_content' ] ) ) {
+			$content = $this->config[ 'welcome_content' ];
 		}
 
 		if ( empty( $title ) && empty( $content ) ) {
@@ -231,20 +240,20 @@ class Daydream_About_Page {
 
 		echo '<div class="header">';
 		echo '<div class="info">';
-		if ( ! empty( $title ) ) {
+		if ( !empty( $title ) ) {
 			echo '<h1>';
 			echo esc_html( $title );
-			if ( ! empty( $this->theme_version ) ) {
+			if ( !empty( $this->theme_version ) ) {
 				echo '<span class="version-container">' . esc_html( $this->theme_version ) . '</span>';
 			}
 			echo '</h1>';
 		}
 
-		if ( ! empty( $content ) ) {
+		if ( !empty( $content ) ) {
 			echo '<div class="daydream-about-text about-text">' . wp_kses_post( $content ) . '</div></div>';
 		}
 
-		$author_url =  "https://themevedanta.com/";
+		$author_url = "https://themevedanta.com/";
 		echo '<a href="' . esc_url( $author_url ) . '" target="_blank" class="wp-badge epsilon-welcome-logo"></a>';
 		echo '</div>';
 	}
@@ -257,9 +266,9 @@ class Daydream_About_Page {
 			return;
 		}
 
-		$count         = 0;
-		$actions_count = $this->get_required_actions();
-		if ( ! empty( $actions_count ) ) {
+		$count			 = 0;
+		$actions_count	 = $this->get_required_actions();
+		if ( !empty( $actions_count ) ) {
 			$count = count( $actions_count );
 		}
 		$actions_badge = $count > 0 ? '<span class="badge-action-count">' . esc_html( $count ) . '</span>' : '';
@@ -267,33 +276,33 @@ class Daydream_About_Page {
 
 		<div id="about_tabs">
 			<ul class="nav-tab-wrapper wp-clearfix">
+		<?php
+		foreach ( $this->tabs as $tab_id => $tab_name ) {
+			if ( $tab_id === 'recommended_actions' ) {
+				$tab_name .= $actions_badge;
+				if ( !$this->should_show_recommended_actions_tab() ) {
+					continue;
+				}
+			}
+			?>
+					<li style="margin-bottom: 0;" data-tab-id="<?php echo esc_attr( $tab_id ); ?>"><a class="nav-tab"
+																									  href="#<?php echo esc_attr( $tab_id ); ?>"><?php echo wp_kses_post( $tab_name ); ?></a>
+					</li>
+			<?php } ?>
+			</ul>
+
 				<?php
 				foreach ( $this->tabs as $tab_id => $tab_name ) {
 					if ( $tab_id === 'recommended_actions' ) {
-						$tab_name .= $actions_badge;
-						if ( ! $this->should_show_recommended_actions_tab() ) {
+						if ( !$this->should_show_recommended_actions_tab() ) {
 							continue;
 						}
 					}
 					?>
-					<li style="margin-bottom: 0;" data-tab-id="<?php echo esc_attr( $tab_id ); ?>"><a class="nav-tab"
-								href="#<?php echo esc_attr( $tab_id ); ?>"><?php echo wp_kses_post( $tab_name ); ?></a>
-					</li>
-				<?php } ?>
-			</ul>
-
-			<?php
-			foreach ( $this->tabs as $tab_id => $tab_name ) {
-				if ( $tab_id === 'recommended_actions' ) {
-					if ( ! $this->should_show_recommended_actions_tab() ) {
-						continue;
-					}
-				}
-				?>
 				<div id="<?php echo esc_attr( $tab_id ); ?>">
-					<?php call_user_func( array( $this, $tab_id . '_render' ) ); ?>
+			<?php call_user_func( array( $this, $tab_id . '_render' ) ); ?>
 				</div>
-			<?php } ?>
+		<?php } ?>
 		</div>
 		<?php
 	}
@@ -312,27 +321,27 @@ class Daydream_About_Page {
 
 		if ( false === $call_api ) {
 			$call_api = plugins_api(
-				'plugin_information', array(
-					'slug'   => $slug,
-					'fields' => array(
-						'downloaded'        => false,
-						'rating'            => false,
-						'description'       => false,
-						'short_description' => true,
-						'donate_link'       => false,
-						'tags'              => false,
-						'sections'          => true,
-						'homepage'          => true,
-						'added'             => false,
-						'last_updated'      => false,
-						'compatibility'     => false,
-						'tested'            => false,
-						'requires'          => false,
-						'downloadlink'      => false,
-						'icons'             => true,
-						'banners'           => true,
-					),
-				)
+			'plugin_information', array(
+				'slug'	 => $slug,
+				'fields' => array(
+					'downloaded'		 => false,
+					'rating'			 => false,
+					'description'		 => false,
+					'short_description'	 => true,
+					'donate_link'		 => false,
+					'tags'				 => false,
+					'sections'			 => true,
+					'homepage'			 => true,
+					'added'				 => false,
+					'last_updated'		 => false,
+					'compatibility'		 => false,
+					'tested'			 => false,
+					'requires'			 => false,
+					'downloadlink'		 => false,
+					'icons'				 => true,
+					'banners'			 => true,
+				),
+			)
 			);
 			set_transient( 'dd_about_plugin_info_' . $slug, $call_api, 30 * MINUTE_IN_SECONDS );
 		}
@@ -348,11 +357,11 @@ class Daydream_About_Page {
 	 * @return array
 	 */
 	public function check_if_plugin_active( $slug ) {
-		$plugin_link_suffix = Daydream_Plugin_Install_Helper::get_plugin_path( $slug );
-		$path               = WPMU_PLUGIN_DIR . '/' . $plugin_link_suffix;
-		if ( ! file_exists( $path ) ) {
+		$plugin_link_suffix	 = Daydream_Plugin_Install_Helper::get_plugin_path( $slug );
+		$path				 = WPMU_PLUGIN_DIR . '/' . $plugin_link_suffix;
+		if ( !file_exists( $path ) ) {
 			$path = WP_PLUGIN_DIR . '/' . $plugin_link_suffix;
-			if ( ! file_exists( $path ) ) {
+			if ( !file_exists( $path ) ) {
 				$path = false;
 			}
 		}
@@ -365,13 +374,13 @@ class Daydream_About_Page {
 
 			return array(
 				'status' => is_plugin_active( $plugin_link_suffix ),
-				'needs'  => $needs,
+				'needs'	 => $needs,
 			);
 		}
 
 		return array(
 			'status' => false,
-			'needs'  => 'install',
+			'needs'	 => 'install',
 		);
 	}
 
@@ -385,10 +394,10 @@ class Daydream_About_Page {
 	public function check_plugin_slug( $slug ) {
 		switch ( $slug ) {
 			case 'yith-woocommerce-wishlist':
-				$slug = 'init';
+				$slug	 = 'init';
 				break;
 			case 'contact-form-7':
-				$slug = 'wp-contact-form-7';
+				$slug	 = 'wp-contact-form-7';
 				break;
 		}
 
@@ -401,18 +410,18 @@ class Daydream_About_Page {
 	 * @param array $data Data for an item.
 	 */
 	public function display_button( $data ) {
-		$button_new_tab = '_self';
-		$button_class   = '';
-		if ( isset( $data['is_new_tab'] ) ) {
-			if ( $data['is_new_tab'] ) {
+		$button_new_tab	 = '_self';
+		$button_class	 = '';
+		if ( isset( $data[ 'is_new_tab' ] ) ) {
+			if ( $data[ 'is_new_tab' ] ) {
 				$button_new_tab = '_blank';
 			}
 		}
 
-		if ( $data['is_button'] ) {
+		if ( $data[ 'is_button' ] ) {
 			$button_class = 'button button-primary';
 		}
-		echo '<a target="' . $button_new_tab . '" href="' . esc_url($data['button_link']) . '"class="' . esc_attr( $button_class ) . '">' . esc_html($data['button_label']) . '</a>';
+		echo '<a target="' . esc_attr( $button_new_tab ) . '" href="' . esc_url( $data[ 'button_link' ] ) . '"class="' . esc_attr( $button_class ) . '">' . esc_html( $data[ 'button_label' ] ) . '</a>';
 	}
 
 	/**
@@ -420,30 +429,30 @@ class Daydream_About_Page {
 	 */
 	public function child_themes() {
 		echo '<div id="child-themes" class="dd-about-page-tab-pane">';
-		$child_themes = isset( $this->config['child_themes'] ) ? $this->config['child_themes'] : array();
-		if ( ! empty( $child_themes ) ) {
-			if ( ! empty( $child_themes['content'] ) && is_array( $child_themes['content'] ) ) {
+		$child_themes = isset( $this->config[ 'child_themes' ] ) ? $this->config[ 'child_themes' ] : array();
+		if ( !empty( $child_themes ) ) {
+			if ( !empty( $child_themes[ 'content' ] ) && is_array( $child_themes[ 'content' ] ) ) {
 				echo '<div class="dd-about-row">';
-				for ( $i = 0; $i < count( $child_themes['content'] ); $i ++ ) {
+				for ( $i = 0; $i < count( $child_themes[ 'content' ] ); $i ++ ) {
 					if ( ( $i !== 0 ) && ( $i / 3 === 0 ) ) {
 						echo '</div>';
 						echo '<div class="dd-about-row">';
 					}
-					$child = $child_themes['content'][ $i ];
-					if ( ! empty( $child['image'] ) ) {
+					$child = $child_themes[ 'content' ][ $i ];
+					if ( !empty( $child[ 'image' ] ) ) {
 						echo '<div class="dd-about-child-theme">';
 						echo '<div class="dd-about-page-child-theme-image">';
-						echo '<img src="' . esc_url( $child['image'] ) . '" alt="' . ( ! empty( $child['image_alt'] ) ? esc_html( $child['image_alt'] ) : '' ) . '" />';
-						if ( ! empty( $child['title'] ) ) {
+						echo '<img src="' . esc_url( $child[ 'image' ] ) . '" alt="' . (!empty( $child[ 'image_alt' ] ) ? esc_html( $child[ 'image_alt' ] ) : '' ) . '" />';
+						if ( !empty( $child[ 'title' ] ) ) {
 							echo '<div class="dd-about-page-child-theme-details">';
-							if ( $child['title'] != $this->theme_name ) {
+							if ( $child[ 'title' ] != $this->theme_name ) {
 								echo '<div class="theme-details">';
-								echo '<span class="theme-name">' . esc_html($child['title']) . '</span>';
-								if ( ! empty( $child['download_link'] ) && ! empty( $child_themes['download_button_label'] ) ) {
-									echo '<a href="' . esc_url( $child['download_link'] ) . '" class="button button-primary install right">' . esc_html( $child_themes['download_button_label'] ) . '</a>';
+								echo '<span class="theme-name">' . esc_html( $child[ 'title' ] ) . '</span>';
+								if ( !empty( $child[ 'download_link' ] ) && !empty( $child_themes[ 'download_button_label' ] ) ) {
+									echo '<a href="' . esc_url( $child[ 'download_link' ] ) . '" class="button button-primary install right">' . esc_html( $child_themes[ 'download_button_label' ] ) . '</a>';
 								}
-								if ( ! empty( $child['preview_link'] ) && ! empty( $child_themes['preview_button_label'] ) ) {
-									echo '<a class="button button-secondary preview right" target="_blank" href="' . esc_url(esc_url($child['preview_link'])) . '">' . esc_html( $child_themes['preview_button_label'] ) . '</a>';
+								if ( !empty( $child[ 'preview_link' ] ) && !empty( $child_themes[ 'preview_button_label' ] ) ) {
+									echo '<a class="button button-secondary preview right" target="_blank" href="' . esc_url( esc_url( $child[ 'preview_link' ] ) ) . '">' . esc_html( $child_themes[ 'preview_button_label' ] ) . '</a>';
 								}
 								echo '</div>';
 							}
@@ -471,8 +480,8 @@ class Daydream_About_Page {
 		if ( is_wp_error( $changelog ) ) {
 			$changelog = '';
 		}
-		$changelog = explode( PHP_EOL, $changelog );
-		$releases  = array();
+		$changelog	 = explode( PHP_EOL, $changelog );
+		$releases	 = array();
 		foreach ( $changelog as $changelog_line ) {
 			if ( strpos( $changelog_line, '**Changes:**' ) !== false || empty( $changelog_line ) ) {
 				continue;
@@ -482,11 +491,11 @@ class Daydream_About_Page {
 					$releases[] = $release;
 				}
 				$release = array(
-					'title'   => substr( $changelog_line, 3 ),
-					'changes' => array(),
+					'title'		 => substr( $changelog_line, 3 ),
+					'changes'	 => array(),
 				);
 			} else {
-				$release['changes'][] = $changelog_line;
+				$release[ 'changes' ][] = $changelog_line;
 			}
 		}
 
@@ -499,49 +508,47 @@ class Daydream_About_Page {
 	 * @param array $feature Feature data.
 	 */
 	public function display_feature_title_and_description( $feature ) {
-		if ( ! empty( $feature['title'] ) ) {
-			echo '<h3>' . wp_kses_post( $feature['title'] ) . '</h3>';
+		if ( !empty( $feature[ 'title' ] ) ) {
+			echo '<h3>' . wp_kses_post( $feature[ 'title' ] ) . '</h3>';
 		}
-		if ( ! empty( $feature['description'] ) ) {
-			echo '<p>' . wp_kses_post( $feature['description'] ) . '</p>';
+		if ( !empty( $feature[ 'description' ] ) ) {
+			echo '<p>' . wp_kses_post( $feature[ 'description' ] ) . '</p>';
 		}
 	}
 
 	/**
 	 * Load css and scripts for the about page
 	 */
-	public function enqueue() {
+	public function daydream_enqueue() {
 		$current_screen = get_current_screen();
-		if ( ! isset( $current_screen->id ) || $current_screen->id !== 'appearance_page_' . $this->theme_slug . '-welcome' ) {
+		if ( !isset( $current_screen->id ) || $current_screen->id !== 'appearance_page_' . $this->theme_slug . '-welcome' ) {
 			return;
 		}
 
 		// this is needed on all admin pages, not just the about page, for the badge action count in the WordPress main sidebar
 		wp_enqueue_style( 'dd-about-page-css', get_template_directory_uri() . '/admin/about-page/css/daydream_about_page_css.css', array(), DAYDREAM_VERSION );
 
-			wp_enqueue_script(
-				'dd-about-page-js', get_template_directory_uri() . '/admin/about-page/js/daydream_about_page_scripts.js',
-				array(
-					'jquery',
-					'jquery-ui-tabs',
-				),
-				DAYDREAM_VERSION
-			);
-			wp_enqueue_style( 'plugin-install' );
-			wp_enqueue_script( 'plugin-install' );
-			wp_enqueue_script( 'updates' );
+		wp_enqueue_script(
+		'dd-about-page-js', get_template_directory_uri() . '/admin/about-page/js/daydream_about_page_scripts.js', array(
+			'jquery',
+			'jquery-ui-tabs',
+		), DAYDREAM_VERSION
+		);
+		wp_enqueue_style( 'plugin-install' );
+		wp_enqueue_script( 'plugin-install' );
+		wp_enqueue_script( 'updates' );
 
-			$required_actions = $this->get_required_actions();
-			wp_localize_script(
-				'dd-about-page-js', 'vedAboutPageObject', array(
-					'nr_actions_required' => count( $required_actions ),
-					'ajaxurl'             => admin_url( 'admin-ajax.php' ),
-					'template_directory'  => get_template_directory_uri(),
-					'activating_string'   => esc_html__( 'Activating', 'daydream' ),
-				)
-			);
+		$required_actions = $this->get_required_actions();
+		wp_localize_script(
+		'dd-about-page-js', 'vedAboutPageObject', array(
+			'nr_actions_required'	 => count( $required_actions ),
+			'ajaxurl'				 => admin_url( 'admin-ajax.php' ),
+			'template_directory'	 => get_template_directory_uri(),
+			'activating_string'		 => esc_html__( 'Activating', 'daydream' ),
+		)
+		);
 
-			Daydream_Plugin_Install_Helper::instance()->enqueue_scripts();
+		Daydream_Plugin_Install_Helper::instance()->enqueue_scripts();
 	}
 
 	/**
@@ -551,13 +558,13 @@ class Daydream_About_Page {
 	 */
 	private function get_required_actions() {
 		$saved_actions = get_option( $this->theme_slug . '_required_actions' );
-		if ( ! is_array( $saved_actions ) ) {
+		if ( !is_array( $saved_actions ) ) {
 			$saved_actions = array();
 		}
-		$req_actions = isset( $this->config['recommended_actions'] ) ? $this->config['recommended_actions'] : array();
-		$valid       = array();
-		foreach ( $req_actions['content'] as $req_action ) {
-			if ( ( ! isset( $req_action['check'] ) || ( isset( $req_action['check'] ) && ( $req_action['check'] == false ) ) ) && ( ! isset( $saved_actions[ $req_action['id'] ] ) ) ) {
+		$req_actions = isset( $this->config[ 'recommended_actions' ] ) ? $this->config[ 'recommended_actions' ] : array();
+		$valid		 = array();
+		foreach ( $req_actions[ 'content' ] as $req_action ) {
+			if ( (!isset( $req_action[ 'check' ] ) || ( isset( $req_action[ 'check' ] ) && ( $req_action[ 'check' ] == false ) ) ) && (!isset( $saved_actions[ $req_action[ 'id' ] ] ) ) ) {
 				$valid[] = $req_action;
 			}
 		}
@@ -568,26 +575,28 @@ class Daydream_About_Page {
 	/**
 	 * Dismiss required actions
 	 */
-	public function dismiss_required_action_callback() {
+	public function daydream_dismiss_required_action_callback() {
 
 		$recommended_actions = array();
-		$req_actions         = isset( $this->config['recommended_actions'] ) ? $this->config['recommended_actions'] : array();
-		foreach ( $req_actions['content'] as $req_action ) {
+		$req_actions		 = isset( $this->config[ 'recommended_actions' ] ) ? $this->config[ 'recommended_actions' ] : array();
+		foreach ( $req_actions[ 'content' ] as $req_action ) {
 			$recommended_actions[] = $req_action;
 		}
 
-		$action_id = ( isset( $_GET['id'] ) ) ? $_GET['id'] : 0;
+		$action_id = ( isset( $_GET[ 'id' ] ) ) ? intval( $_GET['id'] ) : 0;
 
 		echo esc_html( wp_unslash( $action_id ) ); /* this is needed and it's the id of the dismissable required action */
 
-		if ( ! empty( $action_id ) ) {
+		if ( !empty( $action_id ) ) {
 
 			/* if the option exists, update the record for the specified id */
 			if ( get_option( $this->theme_slug . '_required_actions' ) ) {
 
 				$dd_about_page_show_required_actions = get_option( $this->theme_slug . '_required_actions' );
 
-				switch ( esc_html( $_GET['todo'] ) ) {
+                                $todo = sanitize_text_field( $_GET[ 'todo' ] );
+                                
+				switch ( esc_html( wp_unslash( $todo ) ) ) {
 					case 'add':
 						$dd_about_page_show_required_actions[ absint( $action_id ) ] = true;
 						break;
@@ -603,19 +612,18 @@ class Daydream_About_Page {
 
 				$dd_about_page_show_required_actions_new = array();
 
-				if ( ! empty( $recommended_actions ) ) {
+				if ( !empty( $recommended_actions ) ) {
 
 					foreach ( $recommended_actions as $dd_about_page_required_action ) {
 
-						if ( $dd_about_page_required_action['id'] == $action_id ) {
-							$dd_about_page_show_required_actions_new[ $dd_about_page_required_action['id'] ] = false;
+						if ( $dd_about_page_required_action[ 'id' ] == $action_id ) {
+							$dd_about_page_show_required_actions_new[ $dd_about_page_required_action[ 'id' ] ] = false;
 						} else {
-							$dd_about_page_show_required_actions_new[ $dd_about_page_required_action['id'] ] = true;
+							$dd_about_page_show_required_actions_new[ $dd_about_page_required_action[ 'id' ] ] = true;
 						}
 					}
 
 					update_option( $this->theme_slug . '_required_actions', $dd_about_page_show_required_actions_new );
-
 				}
 			}
 		}// End if().
@@ -625,24 +633,24 @@ class Daydream_About_Page {
 	 * Getting started tab content
 	 */
 	public function getting_started_render() {
-		if ( ! empty( $this->config['getting_started'] ) ) {
+		if ( !empty( $this->config[ 'getting_started' ] ) ) {
 
-			$getting_started = $this->config['getting_started'];
+			$getting_started = $this->config[ 'getting_started' ];
 
-			if ( ! empty( $getting_started ) ) {
+			if ( !empty( $getting_started ) ) {
 
 				echo '<div class="feature-section three-col">';
 
 				foreach ( $getting_started as $getting_started_item ) {
 
 					echo '<div class="col">';
-					if ( ! empty( $getting_started_item['title'] ) ) {
-						echo '<h3>' . esc_html($getting_started_item['title']) . '</h3>';
+					if ( !empty( $getting_started_item[ 'title' ] ) ) {
+						echo '<h3>' . esc_html( $getting_started_item[ 'title' ] ) . '</h3>';
 					}
-					if ( ! empty( $getting_started_item['text'] ) ) {
-						echo '<p>' . esc_html($getting_started_item['text']) . '</p>';
+					if ( !empty( $getting_started_item[ 'text' ] ) ) {
+						echo '<p>' . esc_html( $getting_started_item[ 'text' ] ) . '</p>';
 					}
-					if ( ! empty( $getting_started_item['button_link'] ) && ! empty( $getting_started_item['button_label'] ) ) {
+					if ( !empty( $getting_started_item[ 'button_link' ] ) && !empty( $getting_started_item[ 'button_label' ] ) ) {
 
 						echo '<p>';
 
@@ -650,11 +658,11 @@ class Daydream_About_Page {
 
 						$actions_count = $this->get_required_actions();
 
-						if ( ! empty( $actions_count ) ) {
+						if ( !empty( $actions_count ) ) {
 							$count = count( $actions_count );
 						}
 
-						if ( $getting_started_item['recommended_actions'] && isset( $count ) ) {
+						if ( $getting_started_item[ 'recommended_actions' ] && isset( $count ) ) {
 							if ( $count == 0 ) {
 								echo '<span class="dashicons dashicons-yes"></span>';
 							} else {
@@ -676,7 +684,7 @@ class Daydream_About_Page {
 	 * Recommended actions tab content
 	 */
 	public function recommended_actions_render() {
-		$recommended_actions = isset( $this->config['recommended_actions'] ) ? $this->config['recommended_actions'] : array();
+		$recommended_actions = isset( $this->config[ 'recommended_actions' ] ) ? $this->config[ 'recommended_actions' ] : array();
 
 		if ( empty( $recommended_actions ) ) {
 			return;
@@ -684,14 +692,14 @@ class Daydream_About_Page {
 
 		$actions = array();
 
-		foreach ( $recommended_actions['content'] as $action ) {
+		foreach ( $recommended_actions[ 'content' ] as $action ) {
 			$actions[] = $action;
 		}
 
 		if ( empty( $actions ) ) {
 			return;
 		}
-		if ( ! is_array( $actions ) ) {
+		if ( !is_array( $actions ) ) {
 			return;
 		}
 
@@ -703,30 +711,29 @@ class Daydream_About_Page {
 
 			$hidden = false;
 
-			if ( $dd_about_page_show_required_actions[ $action_value['id'] ] === false ) {
+			if ( $dd_about_page_show_required_actions[ $action_value[ 'id' ] ] === false ) {
 				$hidden = true;
 			}
-			if ( $action_value['check'] ) {
+			if ( $action_value[ 'check' ] ) {
 				continue;
 			}
 
 			echo '<div class="dd-about-page-action-required-box">';
 
-			if ( ! $hidden ) {
-				echo '<span data-action="dismiss" class="dashicons dashicons-visibility dd-about-page-required-action-button" id="' . esc_attr( $action_value['id'] ) . '"></span>';
+			if ( !$hidden ) {
+				echo '<span data-action="dismiss" class="dashicons dashicons-visibility dd-about-page-required-action-button" id="' . esc_attr( $action_value[ 'id' ] ) . '"></span>';
 			} else {
-				echo '<span data-action="add" class="dashicons dashicons-hidden dd-about-page-required-action-button" id="' . esc_attr( $action_value['id'] ) . '"></span>';
+				echo '<span data-action="add" class="dashicons dashicons-hidden dd-about-page-required-action-button" id="' . esc_attr( $action_value[ 'id' ] ) . '"></span>';
 			}
 
 			$this->display_feature_title_and_description( $action_value );
 
-			if ( ! empty( $action_value['plugin_slug'] ) ) {
-				$slug = $this->check_plugin_slug( $action_value['plugin_slug'] );
+			if ( !empty( $action_value[ 'plugin_slug' ] ) ) {
+				$slug = $this->check_plugin_slug( $action_value[ 'plugin_slug' ] );
 				?>
 				<?php echo Daydream_Plugin_Install_Helper::instance()->get_button_html( $slug ); ?>
 
 				<?php
-
 			}// End if().
 			echo '</div>';
 		}// End foreach().
@@ -737,30 +744,30 @@ class Daydream_About_Page {
 	 * Recommended plugins tab content
 	 */
 	public function recommended_plugins_render() {
-		$recommended_plugins = $this->config['recommended_plugins'];
-		if ( empty( $recommended_plugins['content'] ) || ! is_array( $recommended_plugins['content'] ) ) {
+		$recommended_plugins = $this->config[ 'recommended_plugins' ];
+		if ( empty( $recommended_plugins[ 'content' ] ) || !is_array( $recommended_plugins[ 'content' ] ) ) {
 			return;
 		}
 
 		echo '<div class="recommended-plugins" id="plugin-filter">';
 
-		foreach ( $recommended_plugins['content'] as $recommended_plugins_item ) {
+		foreach ( $recommended_plugins[ 'content' ] as $recommended_plugins_item ) {
 
-			if ( empty( $recommended_plugins_item['slug'] ) ) {
+			if ( empty( $recommended_plugins_item[ 'slug' ] ) ) {
 				continue;
 			}
 
-			$info = $this->call_plugin_api( $recommended_plugins_item['slug'] );
+			$info = $this->call_plugin_api( $recommended_plugins_item[ 'slug' ] );
 
-			$banner = $info->banners['low'];
-			$active = $this->check_if_plugin_active( $recommended_plugins_item['slug'] );
+			$banner	 = $info->banners[ 'low' ];
+			$active	 = $this->check_if_plugin_active( $recommended_plugins_item[ 'slug' ] );
 
 			echo '<div class="plugin_box">';
 
-			if ( ! empty( $banner ) ) {
+			if ( !empty( $banner ) ) {
 				echo '<img class="plugin-banner" src="' . esc_url( $banner ) . '"/>';
 			}
-			if ( ! empty( $info->name ) && ! empty( $active ) ) {
+			if ( !empty( $info->name ) && !empty( $active ) ) {
 				echo '<div class="title-action-wrapper">';
 				echo '<span class="plugin-name">' . esc_html( $info->name ) . '</span>';
 				echo '<span class="plugin-desc">' . esc_html( $info->short_description ) . '</span>';
@@ -768,19 +775,19 @@ class Daydream_About_Page {
 
 				echo '<div class="plugin-box-footer">';
 				echo '<div  class="button-wrap">';
-				echo '<span class="plugin-card-' . esc_attr( $recommended_plugins_item['slug'] ) . ' action_button ' . ( ( $active['needs'] !== 'install' && $active['status'] ) ? 'active' : '' ) . '">';
-				echo Daydream_Plugin_Install_Helper::instance()->get_button_html( $recommended_plugins_item['slug'] );
+				echo '<span class="plugin-card-' . esc_attr( $recommended_plugins_item[ 'slug' ] ) . ' action_button ' . ( ( $active[ 'needs' ] !== 'install' && $active[ 'status' ] ) ? 'active' : '' ) . '">';
+				echo Daydream_Plugin_Install_Helper::instance()->get_button_html( $recommended_plugins_item[ 'slug' ] );
 				echo '</span>';
 
 				echo '</div>';
-				if ( ! empty( $info->version ) || ! empty( $info->author ) ) {
+				if ( !empty( $info->version ) || !empty( $info->author ) ) {
 					?>
 					<div class="version-wrapper">
 						<?php
-						if ( ! empty( $info->version ) ) {
-							echo '<span class="version">' . ( ! empty( $this->config['recommended_plugins']['version_label'] ) ? esc_html( $this->config['recommended_plugins']['version_label'] ) : '' ) . esc_html( $info->version ) . '</span>';
+						if ( !empty( $info->version ) ) {
+							echo '<span class="version">' . (!empty( $this->config[ 'recommended_plugins' ][ 'version_label' ] ) ? esc_html( $this->config[ 'recommended_plugins' ][ 'version_label' ] ) : '' ) . esc_html( $info->version ) . '</span>';
 						}
-						if ( ! empty( $info->author ) ) {
+						if ( !empty( $info->author ) ) {
 							echo '<span class="separator"> | </span>' . wp_kses_post( strtok( strip_tags( $info->author ), ',' ) );
 						}
 						?>
@@ -792,11 +799,9 @@ class Daydream_About_Page {
 			}
 
 			echo '</div><!-- .col.plugin_box -->';
-
 		}// End foreach().
 
 		echo '</div><!-- .recommended-plugins -->';
-
 	}
 
 	/**
@@ -805,37 +810,36 @@ class Daydream_About_Page {
 	public function support_render() {
 		echo '<div class="feature-section three-col">';
 
-		if ( ! empty( $this->config['support_content'] ) ) {
+		if ( !empty( $this->config[ 'support_content' ] ) ) {
 
-			$support_steps = $this->config['support_content'];
+			$support_steps = $this->config[ 'support_content' ];
 
-			if ( ! empty( $support_steps ) ) {
+			if ( !empty( $support_steps ) ) {
 
 				foreach ( $support_steps as $support_step ) {
 
 					echo '<div class="col">';
 
-					if ( ! empty( $support_step['title'] ) ) {
+					if ( !empty( $support_step[ 'title' ] ) ) {
 						echo '<h3>';
-						if ( ! empty( $support_step['icon'] ) ) {
-							echo '<i class="' . esc_attr( $support_step['icon'] ) . '"></i>';
+						if ( !empty( $support_step[ 'icon' ] ) ) {
+							echo '<i class="' . esc_attr( $support_step[ 'icon' ] ) . '"></i>';
 						}
-						echo esc_html($support_step['title']);
+						echo esc_html( $support_step[ 'title' ] );
 						echo '</h3>';
 					}
 
-					if ( ! empty( $support_step['text'] ) ) {
-						echo '<p>' . $support_step['text'] . '</p>';
+					if ( !empty( $support_step[ 'text' ] ) ) {
+						echo '<p>' . esc_html( $support_step[ 'text' ] ) . '</p>';
 					}
 
-					if ( ! empty( $support_step['button_link'] ) && ! empty( $support_step['button_label'] ) ) {
+					if ( !empty( $support_step[ 'button_link' ] ) && !empty( $support_step[ 'button_label' ] ) ) {
 						echo '<p>';
 						$this->display_button( $support_step );
 						echo '</p>';
 					}
 
 					echo '</div>';
-
 				}// End foreach().
 			}// End if().
 		}// End if().
@@ -848,14 +852,14 @@ class Daydream_About_Page {
 	 */
 	public function changelog_render() {
 		$changelog = $this->parse_changelog();
-		if ( ! empty( $changelog ) ) {
+		if ( !empty( $changelog ) ) {
 			echo '<div class="featured-section changelog">';
 			foreach ( $changelog as $release ) {
-				if ( ! empty( $release['title'] ) ) {
-					echo '<h2>' . esc_html(str_replace( '#', '', $release['title'] )) . ' </h2 > ';
+				if ( !empty( $release[ 'title' ] ) ) {
+					echo '<h2>' . esc_html( str_replace( '#', '', $release[ 'title' ] ) ) . ' </h2 > ';
 				}
-				if ( ! empty( $release['changes'] ) ) {
-					echo implode( '<br/>', $release['changes'] );
+				if ( !empty( $release[ 'changes' ] ) ) {
+					echo implode( '<br/>', esc_html( $release[ 'changes' ] ) );
 				}
 			}
 			echo '</div><!-- .featured-section.changelog -->';
@@ -866,48 +870,47 @@ class Daydream_About_Page {
 	 * Free vs Pro tab content
 	 */
 	public function free_pro_render() {
-		$free_pro = isset( $this->config['free_pro'] ) ? $this->config['free_pro'] : array();
-		if ( ! empty( $free_pro ) ) {
-			if ( ! empty( $free_pro['free_theme_name'] ) && ! empty( $free_pro['pro_theme_name'] ) && ! empty( $free_pro['features'] ) && is_array( $free_pro['features'] ) ) {
+		$free_pro = isset( $this->config[ 'free_pro' ] ) ? $this->config[ 'free_pro' ] : array();
+		if ( !empty( $free_pro ) ) {
+			if ( !empty( $free_pro[ 'free_theme_name' ] ) && !empty( $free_pro[ 'pro_theme_name' ] ) && !empty( $free_pro[ 'features' ] ) && is_array( $free_pro[ 'features' ] ) ) {
 				echo '<div class="feature-section">';
 				echo '<div id="free_pro" class="dd-about-page-tab-pane dd-about-page-fre-pro">';
 				echo '<table class="free-pro-table">';
 				echo '<thead>';
 				echo '<tr class="dd-about-page-text-right">';
 				echo '<th></th>';
-				echo '<th>' . esc_html( $free_pro['free_theme_name'] ) . '</th>';
-				echo '<th>' . esc_html( $free_pro['pro_theme_name'] ) . '</th>';
+				echo '<th>' . esc_html( $free_pro[ 'free_theme_name' ] ) . '</th>';
+				echo '<th>' . esc_html( $free_pro[ 'pro_theme_name' ] ) . '</th>';
 				echo '</tr>';
 				echo '</thead>';
 				echo '<tbody>';
-				foreach ( $free_pro['features'] as $feature ) {
+				foreach ( $free_pro[ 'features' ] as $feature ) {
 					echo '<tr>';
-					if ( ! empty( $feature['title'] ) || ! empty( $feature['description'] ) ) {
+					if ( !empty( $feature[ 'title' ] ) || !empty( $feature[ 'description' ] ) ) {
 						echo '<td>';
 						$this->display_feature_title_and_description( $feature );
 						echo '</td>';
 					}
-					if ( ! empty( $feature['is_in_lite'] ) && ( $feature['is_in_lite'] == 'true' ) ) {
+					if ( !empty( $feature[ 'is_in_lite' ] ) && ( $feature[ 'is_in_lite' ] == 'true' ) ) {
 						echo '<td class="only-lite"><span class="dashicons-before dashicons-yes"></span></td>';
 					} else {
 						echo '<td class="only-pro"><span class="dashicons-before dashicons-no-alt"></span></td>';
 					}
-					if ( ! empty( $feature['is_in_pro'] ) && ( $feature['is_in_pro'] == 'true' ) ) {
+					if ( !empty( $feature[ 'is_in_pro' ] ) && ( $feature[ 'is_in_pro' ] == 'true' ) ) {
 						echo '<td class="only-lite"><span class="dashicons-before dashicons-yes"></span></td>';
 					} else {
 						echo '<td class="only-pro"><span class="dashicons-before dashicons-no-alt"></span></td>';
 					}
 					echo '</tr>';
-
 				}
-				if ( ! empty( $free_pro['pro_theme_link'] ) && ! empty( $free_pro['get_pro_theme_label'] ) ) {
+				if ( !empty( $free_pro[ 'pro_theme_link' ] ) && !empty( $free_pro[ 'get_pro_theme_label' ] ) ) {
 					echo '<tr>';
 					echo '<td>';
-					if ( ! empty( $free_pro['banner_link'] ) && ! empty( $free_pro['banner_src'] ) ) {
-						echo '<a target="_blank" href="' . esc_url($free_pro['banner_link']) . '"><img src="' . esc_url($free_pro['banner_src']) . '" class="free_vs_pro_banner"></a>';
+					if ( !empty( $free_pro[ 'banner_link' ] ) && !empty( $free_pro[ 'banner_src' ] ) ) {
+						echo '<a target="_blank" href="' . esc_url( $free_pro[ 'banner_link' ] ) . '"><img src="' . esc_url( $free_pro[ 'banner_src' ] ) . '" class="free_vs_pro_banner"></a>';
 					}
 					echo '</td>';
-					echo '<td colspan="2" class="dd-about-page-text-right"><a href="' . esc_url( $free_pro['pro_theme_link'] ) . '" target="_blank" class="button button-primary button-hero">' . wp_kses_post( $free_pro['get_pro_theme_label'] ) . '</a></td>';
+					echo '<td colspan="2" class="dd-about-page-text-right"><a href="' . esc_url( $free_pro[ 'pro_theme_link' ] ) . '" target="_blank" class="button button-primary button-hero">' . wp_kses_post( $free_pro[ 'get_pro_theme_label' ] ) . '</a></td>';
 					echo '</tr>';
 				}
 				echo '</tbody>';
@@ -915,7 +918,6 @@ class Daydream_About_Page {
 
 				echo '</div>';
 				echo '</div>';
-
 			}// End if().
 		}// End if().
 	}
@@ -926,18 +928,21 @@ class Daydream_About_Page {
 	 * @return bool
 	 */
 	private function should_show_recommended_actions_tab() {
-		$recommended_actions = isset( $this->config['recommended_actions'] ) ? $this->config['recommended_actions'] : array();
+		$recommended_actions = isset( $this->config[ 'recommended_actions' ] ) ? $this->config[ 'recommended_actions' ] : array();
 
 		if ( empty( $recommended_actions ) ) {
 			return false;
 		}
 
-		foreach ( $recommended_actions['content'] as $action_key => $action_value ) {
-			if ( ! $action_value['check'] ) {
+		foreach ( $recommended_actions[ 'content' ] as $action_key => $action_value ) {
+			if ( !$action_value[ 'check' ] ) {
 				return true;
 			}
 		}
 
 		return false;
 	}
-}//end class
+
+}
+
+//end class

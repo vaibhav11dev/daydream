@@ -3,7 +3,7 @@
  * The template for displaying archive pages
  *
  *
- * @package daydream
+ * @package Daydream
  */
 get_header();
 ?>

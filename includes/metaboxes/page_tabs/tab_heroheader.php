@@ -21,8 +21,6 @@
 	);
 	?>
 
-	<?php
-	?>
     <div class="parallax_settings" style="display: none;">
 		<?php
 		$this->daydream_upload( 'hero_image_parallax', __( 'Parallax Background', 'daydream' ), 'Uploade image for parallax header' );

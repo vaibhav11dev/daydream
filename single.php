@@ -3,7 +3,7 @@
  * The template for displaying all single posts
  *
  *
- * @package daydream
+ * @package Daydream
  */
 get_header();
 

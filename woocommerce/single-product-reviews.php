@@ -13,7 +13,7 @@
  * @see 	    https://docs.woocommerce.com/document/template-structure/
  * @author 		WooThemes
  * @package 	WooCommerce/Templates
- * @version     3.2.0
+ * @version     3.5.0
  */
 if ( !defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -68,9 +68,9 @@ if ( !comments_open() ) {
 					'comment_notes_after'	 => '',
 					'fields'				 => array(
 						'author' => '<div class="col-sm-6"><div class="form-group comment-form-author">' . '<label for="author" class="sr-only">' . esc_html__( 'Name', 'daydream' ) . ' <span class="required">*</span></label> ' .
-						'<input class="form-control" placeholder="' . esc_html__( 'Name', 'daydream' ) . ' " id="author" name="author" type="text" value="' . esc_attr( $commenter[ 'comment_author' ] ) . '" size="30" aria-required="true" required /></div></div>',
+						'<input class="form-control" placeholder="' . esc_attr_e( 'Name', 'daydream' ) . ' " id="author" name="author" type="text" value="' . esc_attr( $commenter[ 'comment_author' ] ) . '" size="30" aria-required="true" required /></div></div>',
 						'email'	 => '<div class="col-sm-6"><div class="form-group comment-form-email"><label for="email" class="sr-only">' . esc_html__( 'Email', 'daydream' ) . ' <span class="required">*</span></label> ' .
-						'<input placeholder="' . esc_html__( 'Email', 'daydream' ) . '" class="form-control" id="email" name="email" type="email" value="' . esc_attr( $commenter[ 'comment_author_email' ] ) . '" size="30" aria-required="true" required /></div></div><div class="clearfix"></div>',
+						'<input placeholder="' . esc_attr_e( 'Email', 'daydream' ) . '" class="form-control" id="email" name="email" type="email" value="' . esc_attr( $commenter[ 'comment_author_email' ] ) . '" size="30" aria-required="true" required /></div></div><div class="clearfix"></div>',
 					),
 					'label_submit'			 => __( 'Submit Review', 'daydream' ),
 					'logged_in_as'			 => '',
@@ -92,7 +92,7 @@ if ( !comments_open() ) {
 						</select></div></div>';
 				}
 
-				$comment_form[ 'comment_field' ] .= '<div class="col-sm-12"><div class="comment-form-comment form-group"><textarea class="form-control" placeholder="' . esc_html__( 'Your review*', 'daydream' ) . '" id="comment" name="comment" cols="45" rows="8" aria-required="true" required></textarea></div></div><div class="clearfix"></div>';
+				$comment_form[ 'comment_field' ] .= '<div class="col-sm-12"><div class="comment-form-comment form-group"><textarea class="form-control" placeholder="' . esc_attr_e( 'Your review*', 'daydream' ) . '" id="comment" name="comment" cols="45" rows="8" aria-required="true" required></textarea></div></div><div class="clearfix"></div>';
 
 
 				comment_form( apply_filters( 'woocommerce_product_review_comment_form_args', $comment_form ) );

@@ -8,7 +8,7 @@
  * E.g., it puts together the home page when no home.php file exists.
  *
  *
- * @package daydream
+ * @package Daydream
  */
 get_header();
 ?>
@@ -27,7 +27,7 @@ get_header();
 			<!-- PRIMARY -->
 			<div id="primary" class="<?php
 			daydream_layout_class( $type = 1 );
-			echo $thumbnail;
+			echo esc_html($thumbnail);
 			?> post-content">
 				<?php get_template_part( 'template-parts/content', 'index' ); ?>
 			</div>

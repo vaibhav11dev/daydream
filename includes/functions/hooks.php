@@ -3,8 +3,8 @@
 /**
  * Hooks - WP daydream's hook system
  *
- * @package WPdaydream
- * @subpackage WP_daydream
+ * @package Daydream
+ * @subpackage Core
  */
 
 /**

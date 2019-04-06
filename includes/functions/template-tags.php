@@ -4,7 +4,7 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package daydream
+ * @package Daydream
  */
 if ( !function_exists( 'daydream_posted_on' ) ) :
 
@@ -153,14 +153,14 @@ endif;
 
 function daydream_excerpt_max_charlength( $limit ) {
 	$excerpt = substr( get_the_content(), 0, $limit ) . " [...]";
-	echo $excerpt;
+	echo wp_kses_post( $excerpt );
 }
 
 /* daydream read more button */
 
 function daydream_post_readmore() {
 	?>
-	<a href="<?php the_permalink() ?>" class="read-more btn btn-lg btn-link btn-base"><?php _e( 'Read more &raquo;', 'daydream' ) ?></a>
+	<a href="<?php the_permalink() ?>" class="read-more btn btn-lg btn-link btn-base"><?php esc_html_e( 'Read more &raquo;', 'daydream' ) ?></a>
 	<?php
 }
 
@@ -197,14 +197,14 @@ function daydream_post_metadata() {
 		?>
 		<li class="author vcard">
 			<?php
-			_e( 'By ', 'daydream' );
+			esc_html_e( 'By ', 'daydream' );
 
 			$dd_author_avatar = daydream_theme_mod( 'dd_author_avatar', '0' );
 			if ( $dd_author_avatar == "1" ) {
 				echo get_avatar( get_the_author_meta( 'email' ), '30' );
 			}
 
-			printf( '<a class="url fn" href="' .esc_url( get_author_posts_url( $authordata->ID, $authordata->user_nicename ) ). '" title="' . sprintf( 'View all posts by %s', 'daydream', $authordata->display_name ) . '">' . get_the_author() . '</a>' )
+			printf( '<a class="url fn" href="' .esc_url( get_author_posts_url( $authordata->ID, $authordata->user_nicename ) ). '" title="' . sprintf( 'View all posts by %s', 'daydream', esc_attr( $authordata->display_name ) ) . '">' . get_the_author() . '</a>' )
 			?>
 		</li>
 		<?php
@@ -213,7 +213,7 @@ function daydream_post_metadata() {
 	if ( daydream_get_terms( 'tags' ) && daydream_theme_mod( 'dd_meta_tags' ) == 1 ) :
 		?>
 		<li class="meta-tags">
-			<?php echo daydream_get_terms( 'tags' ); ?>
+			<?php echo wp_kses_post( daydream_get_terms( 'tags' ) ); ?>
 		</li>
 		<?php
 	endif;
@@ -278,39 +278,14 @@ function daydream_sharethis() {
 	}
 	?>
 	<div class="share-this">
-		<?php if ( daydream_theme_mod( 'dd_sharing_twitter' ) == 1 ) { ?>
-			<a <?php echo $nofollow; ?> data-toggle="tooltip" data-placement="<?php echo esc_attr( daydream_theme_mod( 'dd_sharing_box_tooltip_position' ) ) ?>" title="" data-original-title="<?php _e( 'Share on Twitter', 'daydream' ); ?>" target="_blank" href="http://twitter.com/intent/tweet?status=<?php echo $post->post_title; ?>+&raquo;+<?php echo esc_url( daydream_tinyurl( get_permalink() ) ); ?>"><i class="fa fa-twitter"></i></a>
-		<?php } if ( daydream_theme_mod( 'dd_sharing_facebook' ) == 1 ) { ?>
-			<a <?php echo $nofollow; ?> data-toggle="tooltip" data-placement="<?php echo esc_attr( daydream_theme_mod( 'dd_sharing_box_tooltip_position' ) ) ?>" title="" data-original-title="<?php _e( 'Share on Facebook', 'daydream' ); ?>" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>&amp;t=<?php echo $post->post_title; ?>"><i class="fa fa-facebook"></i></a>
-		<?php } if ( daydream_theme_mod( 'dd_sharing_google' ) == 1 ) { ?>
-			<a <?php echo $nofollow; ?> data-toggle="tooltip" data-placement="<?php echo esc_attr( daydream_theme_mod( 'dd_sharing_box_tooltip_position' ) ) ?>" title="" data-original-title="<?php _e( 'Share on Google Plus', 'daydream' ); ?>" target="_blank" href="https://plus.google.com/share?url=<?php the_permalink(); ?>"><i class="fa fa-google-plus"></i></a>
-		<?php } if ( daydream_theme_mod( 'dd_sharing_pinterest' ) == 1 ) { ?>
-			<a <?php echo $nofollow; ?> data-toggle="tooltip" data-placement="<?php echo esc_attr( daydream_theme_mod( 'dd_sharing_box_tooltip_position' ) ) ?>" title="" data-original-title="<?php _e( 'Share on Pinterest', 'daydream' ); ?>" target="_blank" href="http://pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&media=<?php echo $image_url; ?>&description=<?php echo $post->post_title; ?>"><i class="fa fa-pinterest"></i></a>			
-		<?php } if ( daydream_theme_mod( 'dd_sharing_linkedin' ) == 1 ) { ?>
-			<a <?php echo $nofollow; ?> data-toggle="tooltip" data-placement="<?php echo esc_attr( daydream_theme_mod( 'dd_sharing_box_tooltip_position' ) ) ?>" title="" data-original-title="<?php _e( 'Share on Linkedin', 'daydream' ); ?>" target="_blank" href="http://linkedin.com/shareArticle?mini=true&amp;url=<?php the_permalink(); ?>&amp;title=<?php echo $post->post_title; ?>"><i class="fa fa-linkedin-square"></i></a>			
-		<?php } if ( daydream_theme_mod( 'dd_sharing_email' ) == 1 ) { ?>
-			<a <?php echo $nofollow; ?> data-toggle="tooltip" data-placement="<?php echo esc_attr( daydream_theme_mod( 'dd_sharing_box_tooltip_position' ) ) ?>" title="" data-original-title="<?php _e( 'Share on Email', 'daydream' ); ?>" target="_blank" href="http://www.addtoany.com/email?linkurl=<?php the_permalink(); ?>&linkname=<?php echo $post->post_title; ?>"><i class="fa fa-envelope-o"></i></a>
-			<?php } ?>
+            <a <?php echo esc_html( $nofollow ); ?> data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php esc_attr_e( 'Share on Twitter', 'daydream' ); ?>" target="_blank" href="http://twitter.com/intent/tweet?status=<?php echo esc_attr($post->post_title); ?>+&raquo;+<?php echo esc_url( get_permalink() ); ?>"><i class="fa fa-twitter"></i></a>
+			<a <?php echo esc_html( $nofollow ); ?> data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php esc_attr_e( 'Share on Facebook', 'daydream' ); ?>" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>&amp;t=<?php echo esc_attr($post->post_title); ?>"><i class="fa fa-facebook"></i></a>
+			<a <?php echo esc_html( $nofollow ); ?> data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php esc_attr_e( 'Share on Google Plus', 'daydream' ); ?>" target="_blank" href="https://plus.google.com/share?url=<?php the_permalink(); ?>"><i class="fa fa-google-plus"></i></a>
+			<a <?php echo esc_html($nofollow ); ?> data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php esc_attr_e( 'Share on Pinterest', 'daydream' ); ?>" target="_blank" href="http://pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&media=<?php echo esc_url( $image_url ); ?>&description=<?php echo esc_attr($post->post_title); ?>"><i class="fa fa-pinterest"></i></a>
+			<a <?php echo esc_html( $nofollow ); ?> data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php esc_attr_e( 'Share on Linkedin', 'daydream' ); ?>" target="_blank" href="http://linkedin.com/shareArticle?mini=true&amp;url=<?php the_permalink(); ?>&amp;title=<?php echo esc_attr($post->post_title); ?>"><i class="fa fa-linkedin-square"></i></a>			
+			<a <?php echo esc_html( $nofollow ); ?> data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php esc_attr_e( 'Share on Email', 'daydream' ); ?>" target="_blank" href="http://www.addtoany.com/email?linkurl=<?php the_permalink(); ?>&linkname=<?php echo esc_attr($post->post_title); ?>"><i class="fa fa-envelope-o"></i></a>
 	</div>
 	<?php
-}
-
-/**
- * 
- * Function to print out css class according to layout
- * used in content.php, index.php.
- * 
- * @param type $xyz
- */
-function daydream_post_layout( $xyz ) {
-
-	$dd_post_layout = daydream_theme_mod( 'dd_post_layout', 'two' );
-
-	if ( $dd_post_layout == "two" ) {
-		echo ' col-md-6 odd' . ( $xyz % 2 );
-	} else {
-		echo ' col-md-4 odd' . ( $xyz % 3 );
-	}
 }
 
 /**

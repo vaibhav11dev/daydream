@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package daydream
+ * @package Daydream
  */
 $dd_pagetitlebar_layout	 = daydream_theme_mod( 'dd_pagetitlebar_layout', 1 );
 $dd_edit_post			 = daydream_theme_mod( 'dd_edit_post', '0' );

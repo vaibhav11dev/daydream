@@ -5,7 +5,7 @@
  * This is the template that displays all of the <head> section and everything up until <div class="wrapper">
  *
  *
- * @package daydream
+ * @package Daydream
  */
 ?>
 <!doctype html>
@@ -38,7 +38,7 @@
 			?>
 			<!-- PRELOADER -->
 			<div class="page-loader">
-				<div class="loader"><img src="<?php echo esc_url($dd_loaderfile); ?>" alt="loading..." >
+				<div class="loader"><img src="<?php echo esc_url($dd_loaderfile); ?>" alt="preloader" >
 				</div>
 			</div>
 			<!-- END PRELOADER -->

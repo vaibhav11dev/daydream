@@ -17,8 +17,8 @@ class Daydream_Admin {
 	 * @since     1.0.0
 	 */
 	public function __construct() {
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
-		add_filter( 'init', array( $this, 'do_about_page' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'daydream_enqueue_styles' ) );
+		add_filter( 'init', array( $this, 'daydream_do_about_page' ) );
 	}
 
 	/**
@@ -26,14 +26,14 @@ class Daydream_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
+	public function daydream_enqueue_styles() {
 		
 	}
 
 	/**
 	 * Add the about page.
 	 */
-	public function do_about_page() {
+	public function daydream_do_about_page() {
 		/*
 		 * About page instance
 		 */

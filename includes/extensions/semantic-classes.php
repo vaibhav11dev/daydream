@@ -188,7 +188,7 @@ function semantic_body( $classes = array() ) {
 	$print	 = apply_filters( 'semantic_body_print', false ); // Available filter: semantic_body_print
 	// And tada!
 	if ( !$print )
-		echo $classes;
+		echo esc_html( $classes );
 	else
 		return $classes;
 }
@@ -241,7 +241,7 @@ function semantic_entries( $classes = array() ) {
 	$print	 = apply_filters( 'semantic_entries_print', false ); // Available filter: semantic_entries_print
 	// And tada!
 	if ( !$print )
-		echo $classes;
+		echo esc_html( $classes );
 	else
 		return $classes;
 }
@@ -307,7 +307,7 @@ function semantic_comments( $classes = array() ) {
 	$print	 = apply_filters( 'semantic_comments_print', false ); // Available filter: semantic_comments_print
 	// And tada!
 	if ( !$print )
-		echo $classes;
+		echo esc_html( $classes );
 	else
 		return $classes;
 }

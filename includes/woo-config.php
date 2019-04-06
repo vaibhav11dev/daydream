@@ -6,9 +6,9 @@
  * Do not edit the core files.
  * Add any modifications necessary under a child theme.
  *
- * @package  ThemeVedanta/Template
+ * @package  daydream
  * @author   ThemeVedanta
- * @link     https://ThemeVedanta.com
+ * @link     https://themevedanta.com
  */
 if ( !defined( 'ABSPATH' ) ) {
 	die;
@@ -61,7 +61,7 @@ function daydream_woocommerce_header_add_to_cart_fragment2( $fragments ) {
 				<div class="off-canvas-cart-content">
 					<div class="off-canvas-cart-content-wrap">
 
-		<?php _e( 'Your cart is currently empty.', 'daydream' ); ?>
+					    <?php esc_html_e( 'Your cart is currently empty.', 'daydream' ); ?>
 
 					</div>
 				</div>
@@ -103,8 +103,8 @@ function daydream_woocommerce_header_add_to_cart_fragment2( $fragments ) {
 			?></a>
 								</div>
 								<div class="off-canvas-cart-item-title">
-									<h5 class="m-b-5"><a href="#"><?php echo esc_html($cart_item[ 'data' ]->get_name()); ?></a></h5>
-			<?php echo $cart_item[ 'quantity' ]; ?> x <?php echo get_woocommerce_currency_symbol() . $cart_item[ 'data' ]->get_price(); ?>
+									<h5 class="m-b-5"><a href="#"><?php echo esc_html( $cart_item[ 'data' ]->get_name() ); ?></a></h5>
+			<?php echo esc_html($cart_item[ 'quantity' ]); ?> x <?php echo get_woocommerce_currency_symbol() . $cart_item[ 'data' ]->get_price(); ?>
 								</div>
 							</div>
 							<!-- END ITEM -->
@@ -117,7 +117,7 @@ function daydream_woocommerce_header_add_to_cart_fragment2( $fragments ) {
 					<div class="off-canvas-cart-info">
 						<div class="row">
 							<div class="col-xs-6">
-								<h4 class="m-0"><?php _e( 'Total:', 'daydream' ); ?></h4>
+								<h4 class="m-0"><?php esc_html_e( 'Total:', 'daydream' ); ?></h4>
 							</div>
 							<div class="col-xs-6">
 								<h4 class="m-0 text-right"><?php echo wc_price( $woocommerce->cart->cart_contents_total ); ?></h4>
@@ -126,8 +126,8 @@ function daydream_woocommerce_header_add_to_cart_fragment2( $fragments ) {
 					</div>
 
 					<div class="off-canvas-cart-control">
-						<a href="<?php echo esc_url( get_permalink( get_option( 'woocommerce_checkout_page_id' ) ) ); ?>" class="btn btn-lg btn-block btn-outline btn-fade btn-round btn-dark"><?php _e( 'Checkout', 'daydream' ); ?></a>
-						<a href="<?php echo esc_url( get_permalink( get_option( 'woocommerce_cart_page_id' ) ) ); ?>" class="btn btn-lg btn-block btn-round btn-base"><?php _e( 'Edit Cart', 'daydream' ); ?></a>
+						<a href="<?php echo esc_url( get_permalink( get_option( 'woocommerce_checkout_page_id' ) ) ); ?>" class="btn btn-lg btn-block btn-outline btn-fade btn-round btn-dark"><?php esc_html_e( 'Checkout', 'daydream' ); ?></a>
+						<a href="<?php echo esc_url( get_permalink( get_option( 'woocommerce_cart_page_id' ) ) ); ?>" class="btn btn-lg btn-block btn-round btn-base"><?php esc_html_e( 'Edit Cart', 'daydream' ); ?></a>
 					</div>
 				</div>
 
@@ -172,7 +172,7 @@ function daydream_woocommerce_template_loop_product_title() {
 
 	$link = apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product );
 
-	echo '<h5 class="woocommerce-loop-product__title"><a href="' . esc_url( $link ) . '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">' . esc_html(get_the_title()) . '</a></h5>';
+	echo '<h5 class="woocommerce-loop-product__title"><a href="' . esc_url( $link ) . '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">' . get_the_title() . '</a></h5>';
 }
 
 remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );
@@ -252,9 +252,9 @@ if ( defined( 'YITH_WCWL' ) && !function_exists( 'yith_wcwl_add_wishlist_on_loop
 
 		if ( isset( $_SERVER[ 'QUERY_STRING' ] ) ) {
 
-			parse_str( $_SERVER[ 'QUERY_STRING' ], $params );
+			parse_str( wp_unslash( $_SERVER[ 'QUERY_STRING' ] ), $params );
 
-			$query_string = '?' . $_SERVER[ 'QUERY_STRING' ];
+			$query_string = '?' . wp_unslash( $_SERVER[ 'QUERY_STRING' ] );
 		} else {
 			$query_string = '';
 		}
@@ -277,14 +277,14 @@ if ( defined( 'YITH_WCWL' ) && !function_exists( 'yith_wcwl_add_wishlist_on_loop
 
 		$html	 .= '<ul class="form-control orderby order-dropdown">';
 		$html	 .= '<li>';
-		$html	 .= '<span class="current-li"><span class="current-li-content"><a>' . __( 'Sort by', 'daydream' ) . ' <strong>' . __( 'Default Order', 'daydream' ) . '</strong></a><i class="fa fa-angle-down"></i></span></span>';
+		$html	 .= '<span class="current-li"><span class="current-li-content"><a>' . esc_html__( 'Sort by', 'daydream' ) . ' <strong>' . esc_html__( 'Default Order', 'daydream' ) . '</strong></a><i class="fa fa-angle-down"></i></span></span>';
 		$html	 .= '<ul>';
-		$html	 .= '<li class="' . (($pob == 'default') ? 'current' : '') . '"><a href="' . esc_url( daydream_addURLParameter( $query_string, 'product_orderby', 'default' ) ) . '">' . __( 'Sort by', 'daydream' ) . ' <strong>' . __( 'Default Order', 'daydream' ) . '</strong></a></li>';
-		$html	 .= '<li class="' . (($pob == 'name') ? 'current' : '') . '"><a href="' . esc_url( daydream_addURLParameter( $query_string, 'product_orderby', 'name' ) ) . '">' . __( 'Sort by', 'daydream' ) . ' <strong>' . __( 'Name', 'daydream' ) . '</strong></a></li>';
-		$html	 .= '<li class="' . (($pob == 'price') ? 'current' : '') . '"><a href="' . esc_url( daydream_addURLParameter( $query_string, 'product_orderby', 'price' ) ) . '">' . __( 'Sort by', 'daydream' ) . ' <strong>' . __( 'Price', 'daydream' ) . '</strong></a></li>';
-		$html	 .= '<li class="' . (($pob == 'date') ? 'current' : '') . '"><a href="' . esc_url( daydream_addURLParameter( $query_string, 'product_orderby', 'date' ) ) . '">' . __( 'Sort by', 'daydream' ) . ' <strong>' . __( 'Date', 'daydream' ) . '</strong></a></li>';
-		$html	 .= '<li class="' . (($pob == 'popularity') ? 'current' : '') . '"><a href="' . esc_url( daydream_addURLParameter( $query_string, 'product_orderby', 'popularity' ) ) . '">' . __( 'Sort by', 'daydream' ) . ' <strong>' . __( 'Popularity', 'daydream' ) . '</strong></a></li>';
-		$html	 .= '<li class="' . (($pob == 'rating') ? 'current' : '') . '"><a href="' . esc_url( daydream_addURLParameter( $query_string, 'product_orderby', 'rating' ) ) . '">' . __( 'Sort by', 'daydream' ) . ' <strong>' . __( 'Rating', 'daydream' ) . '</strong></a></li>';
+		$html	 .= '<li class="' . (($pob == 'default') ? 'current' : '') . '"><a href="' . esc_url( daydream_addURLParameter( $query_string, 'product_orderby', 'default' ) ) . '">' . esc_html__( 'Sort by', 'daydream' ) . ' <strong>' . esc_html__( 'Default Order', 'daydream' ) . '</strong></a></li>';
+		$html	 .= '<li class="' . (($pob == 'name') ? 'current' : '') . '"><a href="' . esc_url( daydream_addURLParameter( $query_string, 'product_orderby', 'name' ) ) . '">' . esc_html__( 'Sort by', 'daydream' ) . ' <strong>' . esc_html__( 'Name', 'daydream' ) . '</strong></a></li>';
+		$html	 .= '<li class="' . (($pob == 'price') ? 'current' : '') . '"><a href="' . esc_url( daydream_addURLParameter( $query_string, 'product_orderby', 'price' ) ) . '">' . esc_html__( 'Sort by', 'daydream' ) . ' <strong>' . esc_html__( 'Price', 'daydream' ) . '</strong></a></li>';
+		$html	 .= '<li class="' . (($pob == 'date') ? 'current' : '') . '"><a href="' . esc_url( daydream_addURLParameter( $query_string, 'product_orderby', 'date' ) ) . '">' . esc_html__( 'Sort by', 'daydream' ) . ' <strong>' . esc_html__( 'Date', 'daydream' ) . '</strong></a></li>';
+		$html	 .= '<li class="' . (($pob == 'popularity') ? 'current' : '') . '"><a href="' . esc_url( daydream_addURLParameter( $query_string, 'product_orderby', 'popularity' ) ) . '">' . esc_html__( 'Sort by', 'daydream' ) . ' <strong>' . esc_html__( 'Popularity', 'daydream' ) . '</strong></a></li>';
+		$html	 .= '<li class="' . (($pob == 'rating') ? 'current' : '') . '"><a href="' . esc_url( daydream_addURLParameter( $query_string, 'product_orderby', 'rating' ) ) . '">' . esc_html__( 'Sort by', 'daydream' ) . ' <strong>' . esc_html__( 'Rating', 'daydream' ) . '</strong></a></li>';
 		$html	 .= '</ul>';
 		$html	 .= '</li>';
 		$html	 .= '</ul>';
@@ -304,11 +304,11 @@ if ( defined( 'YITH_WCWL' ) && !function_exists( 'yith_wcwl_add_wishlist_on_loop
 		$html	 .= '<div class="form-group col-sm-3 col-sm-offset-5">';
 		$html	 .= '<ul class="form-control sort-count order-dropdown">';
 		$html	 .= '<li>';
-		$html	 .= '<span class="current-li"><a>' . __( 'Show', 'daydream' ) . ' <strong>' . $per_page . ' ' . __( ' Products', 'daydream' ) . '</strong></a><i class="fa fa-angle-down"></i></span>';
+		$html	 .= '<span class="current-li"><a>' . esc_html__( 'Show', 'daydream' ) . ' <strong>' . $per_page . ' ' . esc_html__( ' Products', 'daydream' ) . '</strong></a><i class="fa fa-angle-down"></i></span>';
 		$html	 .= '<ul>';
-		$html	 .= '<li class="' . (($pc == $per_page) ? 'current' : '') . '"><a href="' . esc_url( daydream_addURLParameter( $query_string, 'product_count', $per_page ) ) . '">' . __( 'Show', 'daydream' ) . ' <strong>' . $per_page . ' ' . __( 'Products', 'daydream' ) . '</strong></a></li>';
-		$html	 .= '<li class="' . (($pc == $per_page * 2) ? 'current' : '') . '"><a href="' . esc_url( daydream_addURLParameter( $query_string, 'product_count', $per_page * 2 ) ) . '">' . __( 'Show', 'daydream' ) . ' <strong>' . ($per_page * 2) . ' ' . __( 'Products', 'daydream' ) . '</strong></a></li>';
-		$html	 .= '<li class="' . (($pc == $per_page * 3) ? 'current' : '') . '"><a href="' . esc_url( daydream_addURLParameter( $query_string, 'product_count', $per_page * 3 ) ) . '">' . __( 'Show', 'daydream' ) . ' <strong>' . ($per_page * 3) . ' ' . __( 'Products', 'daydream' ) . '</strong></a></li>';
+		$html	 .= '<li class="' . (($pc == $per_page) ? 'current' : '') . '"><a href="' . esc_url( daydream_addURLParameter( $query_string, 'product_count', $per_page ) ) . '">' . esc_html__( 'Show', 'daydream' ) . ' <strong>' . $per_page . ' ' . esc_html__( 'Products', 'daydream' ) . '</strong></a></li>';
+		$html	 .= '<li class="' . (($pc == $per_page * 2) ? 'current' : '') . '"><a href="' . esc_url( daydream_addURLParameter( $query_string, 'product_count', $per_page * 2 ) ) . '">' . esc_html__( 'Show', 'daydream' ) . ' <strong>' . ($per_page * 2) . ' ' . esc_html__( 'Products', 'daydream' ) . '</strong></a></li>';
+		$html	 .= '<li class="' . (($pc == $per_page * 3) ? 'current' : '') . '"><a href="' . esc_url( daydream_addURLParameter( $query_string, 'product_count', $per_page * 3 ) ) . '">' . esc_html__( 'Show', 'daydream' ) . ' <strong>' . ($per_page * 3) . ' ' . esc_html__( 'Products', 'daydream' ) . '</strong></a></li>';
 		$html	 .= '</ul>';
 		$html	 .= '</li>';
 		$html	 .= '</ul>';
@@ -324,7 +324,7 @@ if ( defined( 'YITH_WCWL' ) && !function_exists( 'yith_wcwl_add_wishlist_on_loop
 
 		if ( isset( $_SERVER[ 'QUERY_STRING' ] ) ) {
 
-			parse_str( $_SERVER[ 'QUERY_STRING' ], $params );
+			parse_str( wp_unslash( $_SERVER[ 'QUERY_STRING' ] ), $params );
 		}
 
 		$pob = !empty( $params[ 'product_orderby' ] ) ? $params[ 'product_orderby' ] : 'default';
@@ -402,7 +402,7 @@ if ( defined( 'YITH_WCWL' ) && !function_exists( 'yith_wcwl_add_wishlist_on_loop
 	";
 
 		if ( isset( $_SERVER[ 'QUERY_STRING' ] ) ) {
-			parse_str( $_SERVER[ 'QUERY_STRING' ], $params );
+			parse_str( wp_unslash( $_SERVER[ 'QUERY_STRING' ] ), $params );
 		}
 
 		$order	 = !empty( $params[ 'product_order' ] ) ? $params[ 'product_order' ] : 'desc';
@@ -420,7 +420,7 @@ if ( defined( 'YITH_WCWL' ) && !function_exists( 'yith_wcwl_add_wishlist_on_loop
 		$dd_woo_items = daydream_theme_mod( 'dd_woo_items', '12' );
 
 		if ( isset( $_SERVER[ 'QUERY_STRING' ] ) ) {
-			parse_str( $_SERVER[ 'QUERY_STRING' ], $params );
+			parse_str( wp_unslash( $_SERVER[ 'QUERY_STRING' ] ), $params );
 		}
 
 		if ( $dd_woo_items ) {
@@ -510,26 +510,26 @@ if ( defined( 'YITH_WCWL' ) && !function_exists( 'yith_wcwl_add_wishlist_on_loop
 		$order_item_product	 = new WC_Order_Item_Product();
 		?>
 	<div class="daydream-order-details woocommerce-content-box table-responsive">
-		<h2><?php _e( 'Order Details', 'daydream' ); ?></h2>
+		<h2><?php esc_html_e( 'Order Details', 'daydream' ); ?></h2>
 		<table class="table cart-table order_details">
 			<thead>
 				<tr>
 					<th class="col-title"></th>
-					<th class="col-title"><?php _e( 'Product', 'daydream' ); ?></th>
-					<th class="col-quantity"><?php _e( 'Quantity', 'daydream' ); ?></th>
-					<th class="col-subtotal"><?php _e( 'Total', 'daydream' ); ?></th>
+					<th class="col-title"><?php esc_html_e( 'Product', 'daydream' ); ?></th>
+					<th class="col-quantity"><?php esc_html_e( 'Quantity', 'daydream' ); ?></th>
+					<th class="col-subtotal"><?php esc_html_e( 'Total', 'daydream' ); ?></th>
 				</tr>
 			</thead>
 			<tfoot>
 				<?php
-				if ( $totals				 = $order->get_order_item_totals() )
+				if ( $totals = $order->get_order_item_totals() )
 					foreach ( $totals as $total ) :
 						?>
 						<tr>
 							<td class="filler-td">&nbsp;</td>
 							<td class="filler-td">&nbsp;</td>
-							<th scope="row"><?php echo $total[ 'label' ]; ?></th>
-							<td class="product-total"><?php echo $total[ 'value' ]; ?></td>
+							<th scope="row"><?php echo esc_html($total[ 'label' ]); ?></th>
+							<td class="product-total"><?php echo esc_html($total[ 'value' ]); ?></td>
 						</tr>
 						<?php
 					endforeach;
@@ -612,16 +612,16 @@ if ( defined( 'YITH_WCWL' ) && !function_exists( 'yith_wcwl_add_wishlist_on_loop
 
 	<div class="daydream-customer-details woocommerce-content-box full-width">
 		<header>
-			<h2><?php _e( 'Customer details', 'daydream' ); ?></h2>
+			<h2><?php esc_html_e( 'Customer details', 'daydream' ); ?></h2>
 		</header>
 		<dl class="customer_details">
 			<?php
 			if ( $order->get_customer_note() )
-				echo '<dt>' . __( 'Note:', 'daydream' ) . '</dt> <dd>' . $order->get_customer_note() . '</dd>';
+				echo '<dt>' . esc_html__( 'Note:', 'daydream' ) . '</dt> <dd>' . $order->get_customer_note() . '</dd>';
 			if ( $order->get_billing_email() )
-				echo '<dt>' . __( 'Email:', 'daydream' ) . '</dt> <dd>' . $order->get_billing_email() . '</dd>';
+				echo '<dt>' . esc_html__( 'Email:', 'daydream' ) . '</dt> <dd>' . $order->get_billing_email() . '</dd>';
 			if ( $order->get_billing_phone() )
-				echo '<dt>' . __( 'Telephone:', 'daydream' ) . '</dt> <dd>' . $order->get_billing_phone() . '</dd>';
+				echo '<dt>' . esc_html__( 'Telephone:', 'daydream' ) . '</dt> <dd>' . $order->get_billing_phone() . '</dd>';
 
 			// Additional customer details hook
 			do_action( 'woocommerce_order_details_after_customer_details', $order );
@@ -637,12 +637,12 @@ if ( defined( 'YITH_WCWL' ) && !function_exists( 'yith_wcwl_add_wishlist_on_loop
 				<?php endif; ?>
 
 				<header class="title">
-					<h3><?php _e( 'Billing Address', 'daydream' ); ?></h3>
+					<h3><?php esc_html_e( 'Billing Address', 'daydream' ); ?></h3>
 				</header>
 				<address><p>
 						<?php
 						if ( !$order->get_formatted_billing_address() )
-							_e( 'N/A', 'daydream' );
+							esc_html_e( 'N/A', 'daydream' );
 						else
 							echo $order->get_formatted_billing_address();
 						?>
@@ -655,12 +655,12 @@ if ( defined( 'YITH_WCWL' ) && !function_exists( 'yith_wcwl_add_wishlist_on_loop
 				<div class="col-2">
 
 					<header class="title">
-						<h3><?php _e( 'Shipping Address', 'daydream' ); ?></h3>
+						<h3><?php esc_html_e( 'Shipping Address', 'daydream' ); ?></h3>
 					</header>
 					<address><p>
 							<?php
 							if ( !$order->get_formatted_shipping_address() )
-								_e( 'N/A', 'daydream' );
+								esc_html_e( 'N/A', 'daydream' );
 							else
 								echo $order->get_formatted_shipping_address();
 							?>

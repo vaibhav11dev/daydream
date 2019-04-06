@@ -3,7 +3,7 @@
  * The template for displaying search results pages
  *
  *
- * @package daydream
+ * @package Daydream
  */
 get_header();
 ?>

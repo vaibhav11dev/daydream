@@ -5,7 +5,7 @@ get_template_part( 'includes/widgets/contact_info' );
 
 if ( function_exists( 'register_sidebar' ) )
 	register_sidebar( array(
-		'name'			 => __( 'Sidebar 1', 'daydream' ),
+		'name'			 => esc_html__( 'Sidebar 1', 'daydream' ),
 		'id'			 => 'sidebar-1',
 		'before_widget'	 => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
 		'after_widget'	 => '</div></div>',
@@ -15,7 +15,7 @@ if ( function_exists( 'register_sidebar' ) )
 
 if ( function_exists( 'register_sidebar' ) )
 	register_sidebar( array(
-		'name'			 => __( 'Sidebar 2', 'daydream' ),
+		'name'			 => esc_html__( 'Sidebar 2', 'daydream' ),
 		'id'			 => 'sidebar-2',
 		'before_widget'	 => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
 		'after_widget'	 => '</div></div>',
@@ -26,7 +26,7 @@ if ( function_exists( 'register_sidebar' ) )
 function daydream_footer1() {
 	if ( function_exists( 'register_sidebar' ) )
 		register_sidebar( array(
-			'name'			 => __( 'Footer 1', 'daydream' ),
+			'name'			 => esc_html__( 'Footer 1', 'daydream' ),
 			'id'			 => 'footer-1',
 			'before_widget'	 => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
 			'after_widget'	 => '</div></div>',
@@ -38,7 +38,7 @@ function daydream_footer1() {
 function daydream_footer2() {
 	if ( function_exists( 'register_sidebar' ) )
 		register_sidebar( array(
-			'name'			 => __( 'Footer 2', 'daydream' ),
+			'name'			 => esc_html__( 'Footer 2', 'daydream' ),
 			'id'			 => 'footer-2',
 			'before_widget'	 => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
 			'after_widget'	 => '</div></div>',
@@ -50,7 +50,7 @@ function daydream_footer2() {
 function daydream_footer3() {
 	if ( function_exists( 'register_sidebar' ) )
 		register_sidebar( array(
-			'name'			 => __( 'Footer 3', 'daydream' ),
+			'name'			 => esc_html__( 'Footer 3', 'daydream' ),
 			'id'			 => 'footer-3',
 			'before_widget'	 => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
 			'after_widget'	 => '</div></div>',
@@ -62,7 +62,7 @@ function daydream_footer3() {
 function daydream_footer4() {
 	if ( function_exists( 'register_sidebar' ) )
 		register_sidebar( array(
-			'name'			 => __( 'Footer 4', 'daydream' ),
+			'name'			 => esc_html__( 'Footer 4', 'daydream' ),
 			'id'			 => 'footer-4',
 			'before_widget'	 => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
 			'after_widget'	 => '</div></div>',

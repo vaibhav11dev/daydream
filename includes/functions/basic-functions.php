@@ -155,19 +155,6 @@ function daydream_get_first_image() {
 	}
 }
 
-/**
- * 
- * Tiny URL
- * 
- * @param type $url
- * @return type
- */
-function daydream_tinyurl( $url ) {
-	$response = esc_url( wp_remote_retrieve_body( wp_remote_get( 'http://tinyurl.com/api-create.php?url=' . $url ) ) );
-
-	return $response;
-}
-
 if ( !function_exists( 'daydream_addURLParameter' ) ) {
 
 	/**
@@ -341,13 +328,13 @@ function daydream_paginate_links() {
 		<ul class="pagination">
 			<?php foreach ( $pagination as $key => $page_link ) { ?>
 				<li class="paginated_link <?php
-						if ( strpos( $page_link, 'current' ) !== false ) {
-							echo 'active';
-						}
-						?>">
-			<?php echo $page_link ?>
+				if ( strpos( $page_link, 'current' ) !== false ) {
+					echo 'active';
+				}
+				?>">
+						<?php echo wp_kses_post( $page_link ); ?>
 				</li>
-		<?php } ?>
+			<?php } ?>
 		</ul>
 		<?php
 	}
@@ -444,7 +431,7 @@ function daydream_heroheadertype( $param ) {
 
 	// Image Background Type
 	if ( isset( $param[ 'daydream_hero_type' ] ) && $param[ 'daydream_hero_type' ] == 'hero_parallax' && isset( $param[ 'daydream_hero_image_parallax' ] ) && $param[ 'daydream_hero_image_parallax' ] ) {
-		$background_type = 'data-background="' . wp_get_attachment_url( $param[ 'daydream_hero_image_parallax' ] ) . '"';
+		$background_type = 'data-background="' . esc_attr( wp_get_attachment_url( $param[ 'daydream_hero_image_parallax' ] ) ) . '"';
 		$parallax_class	 = 'module-hero parallax';
 	}
 
@@ -461,7 +448,7 @@ function daydream_heroheadertype( $param ) {
 	if ( $background_type ) :
 		?>
 		<!-- HERO -->
-		<section id="hero" class="bg-black-alfa-30 color-white hero-height-<?php echo $hero_height; ?> <?php echo $parallax_class; ?>" <?php echo $background_type; ?>>
+		<section id="hero" class="bg-black-alfa-30 color-white hero-height-<?php echo esc_attr( $hero_height ); ?> <?php echo esc_attr( $parallax_class ); ?>" <?php echo $background_type; ?>>
 			<!-- HERO TEXT -->
 			<div class="hero-caption">
 				<div class="hero-text">
@@ -469,17 +456,17 @@ function daydream_heroheadertype( $param ) {
 					<div class="container">
 
 						<div class="row">
-							<div class="col-sm-12 text-<?php echo $align; ?>">
+							<div class="col-sm-12 text-<?php echo esc_attr( $align ); ?>">
 								<?php if ( isset( $param[ 'daydream_hero_heading' ] ) && $param[ 'daydream_hero_heading' ] ) { ?>
-									<h1 class="text-title text-uppercase hero_header_heading"><?php echo esc_html($param[ 'daydream_hero_heading' ]); ?></h1>
+									<h1 class="text-title text-uppercase hero_header_heading"><?php echo esc_html( $param[ 'daydream_hero_heading' ] ); ?></h1>
 									<?php
 								}
 								if ( isset( $param[ 'daydream_hero_caption' ] ) && $param[ 'daydream_hero_caption' ] ) {
 									?>
-									<p class="hero_header_caption"><?php echo esc_html($param[ 'daydream_hero_caption' ]); ?></p>
-			<?php
-		}
-		?>
+									<p class="hero_header_caption"><?php echo esc_html( $param[ 'daydream_hero_caption' ] ); ?></p>
+									<?php
+								}
+								?>
 							</div>
 						</div>
 
@@ -504,7 +491,7 @@ function daydream_shop_wrapper_strat() {
 			<div class="row">
 
 				<!-- PRIMARY -->
-				<div id="primary" class="<?php esc_attr(daydream_layout_class( $type = 1 )); ?> post-content">
+				<div id="primary" class="<?php esc_attr( daydream_layout_class( $type			 = 1 ) ); ?> post-content">
 					<?php
 					$wrapper_strat	 = ob_get_clean();
 					echo $wrapper_strat;
@@ -538,7 +525,7 @@ function daydream_shop_wrapper_strat() {
 function daydream_page_title_bar() {
 	?>
 	<!-- PAGE TITLE -->
-	<section class="<?php echo esc_attr(daydream_titlebar_bg_class()); ?>">
+	<section class="<?php echo esc_attr( daydream_titlebar_bg_class() ); ?>">
 		<div class="container">
 			<div class="row">
 				<div class="page-title-wrapper col-sm-12">
@@ -571,7 +558,7 @@ function daydream_page_title_bar() {
 							} elseif ( is_year() ) {
 								$title = __( 'Yearly Archives: ', 'daydream' ) . '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'daydream' ) ) . '</span>';
 							} elseif ( is_author() ) {
-								$curauth = ( isset( $_GET[ 'author_name' ] ) ) ? get_user_by( 'slug', $_GET[ 'author_name' ] ) : get_user_by( 'id', get_the_author_meta( 'ID' ) );
+								$curauth = ( isset( $_GET[ 'author_name' ] ) ) ? get_user_by( 'slug', sanitize_text_field( $_GET[ 'author_name' ] ) ) : get_user_by( 'id', get_the_author_meta( 'ID' ) );
 								$title	 = $curauth->nickname;
 							} else {
 								$title		 = single_cat_title( '', false );
@@ -587,27 +574,27 @@ function daydream_page_title_bar() {
 					}
 					?>
 
-					<div class="<?php echo esc_attr(daydream_titlebar_center_class()); ?>">
+					<div class="<?php echo esc_attr( daydream_titlebar_center_class() ); ?>">
 
-						<div class="<?php echo esc_attr(daydream_titlebar_left_class()); ?>">
-								<?php
-								if ( daydream_titlebar_title_check() == true ) {
-									?>
+						<div class="<?php echo esc_attr( daydream_titlebar_left_class() ); ?>">
+							<?php
+							if ( daydream_titlebar_title_check() == true ) {
+								?>
 								<h3 class="entry-title text-title text-uppercase m-b-10">
-								<?php echo esc_html($title); ?>
+									<?php echo wp_kses_data( $title ); ?>
 								</h3>
 
 								<?php
 								if ( $description ) {
 									?>
-									<div class="taxonomy-description"><?php echo esc_html($description); ?></div>
-			<?php
-		}
-	}
-	?>
+									<div class="taxonomy-description"><?php echo esc_html( $description ); ?></div>
+									<?php
+								}
+							}
+							?>
 						</div>
 
-						<div class="<?php echo esc_attr(daydream_titlebar_right_class()); ?>">    
+						<div class="<?php echo esc_attr( daydream_titlebar_right_class() ); ?>">    
 							<?php
 							if ( daydream_titlebar_breadcrumb_check() == true ) {
 								if ( is_bbpress() ) {
@@ -801,7 +788,7 @@ function daydream_breadcrumb() {
 
 	<ol class="breadcrumb text-xs">
 
-		<li><a class="home" href="<?php echo esc_url(home_url()); ?>" ><?php _e( 'Home', 'daydream' ); ?></a></li>
+		<li><a class="home" href="<?php echo esc_url( home_url() ); ?>" ><?php esc_html_e( 'Home', 'daydream' ); ?></a></li>
 
 		<?php
 		global $post;
@@ -816,19 +803,19 @@ function daydream_breadcrumb() {
 				$cats	 = explode( '</a>/', $cats );
 				foreach ( $cats as $key => $cat ) {
 					if ( $cat )
-						echo '<li>' . $cat . '</a></li>';
+						echo '<li>' . wp_kses_post($cat) . '</li>';
 				}
 			}
-			echo '<li>' . $thisCat->name . '</li>';
+			echo '<li>' . esc_html( $thisCat->name ) . '</li>';
 		}
 
 		if ( is_tax() ) {
 			$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
-			echo '<li>' . $term->name . '</li>';
+			echo '<li>' . esc_html( $term->name ) . '</li>';
 		}
 
 		if ( is_home() ) {
-			echo '<li>' . __( 'Blog', 'daydream' ) . '</li>';
+			echo '<li>' . esc_html_e( 'Blog', 'daydream' ) . '</li>';
 		}
 		if ( is_page() && !is_front_page() ) {
 			$parents	 = array();
@@ -861,20 +848,20 @@ function daydream_breadcrumb() {
 			) );
 			if ( $categories ) :
 				foreach ( $categories as $cat ) :
-					$cats[] = '<li><a href="' . esc_url( get_category_link( $cat->term_id ) ) . '" title="' . $cat->name . '">' . $cat->name . '</a></li>';
+					$cats[] = '<li><a href="' . esc_url( get_category_link( $cat->term_id ) ) . '" title="' . $cat->name . '">' . esc_html( $cat->name ) . '</a></li>';
 				endforeach;
 				echo join( ' ', $cats );
 			endif;
 			echo '<li>' . get_the_title() . '</li>';
 		}
 		if ( is_tag() ) {
-			echo '<li>' . "Tag: " . single_tag_title( '', false ) . '</li>';
+			echo '<li>' . '"' . esc_html_e( 'Tag:', 'daydream' ) . '"' . single_tag_title( '', false ) . '</li>';
 		}
 		if ( is_404() ) {
-			echo '<li>' . __( "404 - Page not Found", 'daydream' ) . '</li>';
+			echo '<li>' . esc_html_e( "404 - Page not Found", 'daydream' ) . '</li>';
 		}
 		if ( is_search() ) {
-			echo '<li>' . __( "Search", 'daydream' ) . '</li>';
+			echo '<li>' . esc_html_e( "Search", 'daydream' ) . '</li>';
 		}
 		if ( is_day() ) {
 			echo '<li><a href="' . esc_url( get_year_link( get_the_time( 'Y' ) ) ) . '">' . get_the_time( 'Y' ) . "</a></li>";
@@ -1093,7 +1080,6 @@ function daydream_sidebar_class() {
 
 // -> END Daydream General Layout Functions
 
-
 /**
  * Check if $no_seconds have passed since theme was activated.
  * Used to perform certain actions, like displaying upsells or add a new recommended action in About Daydream page.
@@ -1104,8 +1090,8 @@ function daydream_sidebar_class() {
  */
 function daydream_check_passed_time( $no_seconds ) {
 	$activation_time = get_option( 'daydream_time_activated' );
-	if ( ! empty( $activation_time ) ) {
-		$current_time    = time();
+	if ( !empty( $activation_time ) ) {
+		$current_time	 = time();
 		$time_difference = (int) $no_seconds;
 		if ( $current_time >= $activation_time + $time_difference ) {
 			return true;

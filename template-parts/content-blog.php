@@ -3,7 +3,7 @@
  * Template part for displaying posts
  *
  *
- * @package daydream
+ * @package Daydream
  */
 // The Query
 $temp					 = $wp_query;

@@ -26,7 +26,7 @@ if ( post_password_required() ) {
 			// If comments are open, but there are no comments.
 			if ( comments_open() ) {
 				echo '<h5 class="comment-title text-title text-uppercase bottom-line">';
-				esc_html_e( 'No Comments Yet', 'daydream' );
+				esc_html__( 'No Comments Yet', 'daydream' );
 				echo '</h5>';
 			}
 		}
@@ -63,9 +63,7 @@ if ( post_password_required() ) {
 				?>
 				<!--END .pings-list-->
 			</div>
-		<?php } ?>
-
-		<?php
+		<?php }
 	}
 	?>
 </div>

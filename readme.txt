@@ -27,7 +27,13 @@ Daydream is multipurpose responsive WordPress theme with light weight. Ready to 
 = Is daydream free to use? =
 Yes! `daydream` core features are absolutely free.
 
-== Changelog
+== Changelog ==
+
+= 1.1.1 =
+* Update latest version WordPress 5.1.x and Woocommerce 3.5.x
+* Change back-to-top button positions
+* Update footer style
+* Solve some bugs
 
 = 1.1.0 =
 * Remove escaping issues.

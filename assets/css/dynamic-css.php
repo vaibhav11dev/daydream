@@ -337,7 +337,8 @@ ul,
 
 .progress-bar,
 .btn.btn-base,
-.bg-brand {
+.bg-brand,
+.scroll-top {
     background-color: ' . esc_attr( $dd_primary_color ) . ';
 }
 

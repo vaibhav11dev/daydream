@@ -3820,7 +3820,7 @@ function() {
             if (!o || t.defaultPrevented || c(v, "embed") || c(i, "embed") && /\.pdf/i.test(i.src)) return !0;
             var a = t.wheelDeltaX || 0,
                 r = t.wheelDeltaY || 0;
-            return a || r || (r = t.wheelDelta || 0), !y.touchpadSupport && p(r) ? !0 : (Math.abs(a) > 1.2 && (a *= y.stepSize / 120), Math.abs(r) > 1.2 && (r *= y.stepSize / 120), n(o, -a, -r), void t.preventDefault())
+            return a || r || (r = t.wheelDelta || 0), !y.touchpadSupport && p(r) ? !0 : (Math.abs(a) > 1.2 && (a *= y.stepSize / 120), Math.abs(r) > 1.2 && (r *= y.stepSize / 120), n(o, -a, -r))
         }
 
         function o(t) {
@@ -3984,68 +3984,7 @@ function() {
             O = "onmousewheel" in document;
         O && z && (l("mousedown", a), l("mousewheel", i), l("load", e))
     }(),
-    /**
-    @license Sticky-kit v1.1.2 | WTFPL | Leaf Corcoran 2015 | http://leafo.net
-     */
-    function() {
-        var t, e;
-        t = this.jQuery || window.jQuery, e = t(window), t.fn.stick_in_parent = function(n) {
-            var i, o, a, r, s, l, u, c, d, p, m, f;
-            for (null == n && (n = {}), f = n.sticky_class, l = n.inner_scrolling, m = n.recalc_every, p = n.parent, d = n.offset_top, c = n.spacer, a = n.bottoming, null == d && (d = 0), null == p && (p = void 0), null == l && (l = !0), null == f && (f = "is_stuck"), i = t(document), null == a && (a = !0), r = function(n, o, r, s, u, h, v, g) {
-                    var y, w, b, x, I, C, S, T, k, L, E, M;
-                    if (!n.data("sticky_kit")) {
-                        if (n.data("sticky_kit", !0), I = i.height(), S = n.parent(), null != p && (S = S.closest(p)), !S.length) throw "failed to find stick parent";
-                        if (b = !1, y = !1, E = null != c ? c && n.closest(c) : t("<div />"), E && E.css("position", n.css("position")), T = function() {
-                                var t, e, a;
-                                if (!g) return I = i.height(), t = parseInt(S.css("border-top-width"), 10), e = parseInt(S.css("padding-top"), 10), o = parseInt(S.css("padding-bottom"), 10), r = S.offset().top + t + e, s = S.height(), b && (b = !1, y = !1, null == c && (n.insertAfter(E), E.detach()), n.css({
-                                    position: "",
-                                    top: "",
-                                    width: "",
-                                    bottom: ""
-                                }).removeClass(f), a = !0), u = n.offset().top - (parseInt(n.css("margin-top"), 10) || 0) - d, h = n.outerHeight(!0), v = n.css("float"), E && E.css({
-                                    width: n.outerWidth(!0),
-                                    height: h,
-                                    display: n.css("display"),
-                                    "vertical-align": n.css("vertical-align"),
-                                    "float": v
-                                }), a ? M() : void 0
-                            }, T(), h !== s) return x = void 0, C = d, L = m, M = function() {
-                            var t, p, w, k, M, P;
-                            if (!g) return w = !1, null != L && (L -= 1, 0 >= L && (L = m, T(), w = !0)), w || i.height() === I || (T(), w = !0), k = e.scrollTop(), null != x && (p = k - x), x = k, b ? (a && (M = k + h + C > s + r, y && !M && (y = !1, n.css({
-                                position: "fixed",
-                                bottom: "",
-                                top: C
-                            }).trigger("sticky_kit:unbottom"))), u > k && (b = !1, C = d, null == c && ("left" !== v && "right" !== v || n.insertAfter(E), E.detach()), t = {
-                                position: "",
-                                width: "",
-                                top: ""
-                            }, n.css(t).removeClass(f).trigger("sticky_kit:unstick")), l && (P = e.height(), h + d > P && (y || (C -= p, C = Math.max(P - h, C), C = Math.min(d, C), b && n.css({
-                                top: C + "px"
-                            }))))) : k > u && (b = !0, t = {
-                                position: "fixed",
-                                top: C
-                            }, t.width = "border-box" === n.css("box-sizing") ? n.outerWidth() + "px" : n.width() + "px", n.css(t).addClass(f), null == c && (n.after(E), "left" !== v && "right" !== v || E.append(n)), n.trigger("sticky_kit:stick")), b && a && (null == M && (M = k + h + C > s + r), !y && M) ? (y = !0, "static" === S.css("position") && S.css({
-                                position: "relative"
-                            }), n.css({
-                                position: "absolute",
-                                bottom: o,
-                                top: "auto"
-                            }).trigger("sticky_kit:bottom")) : void 0
-                        }, k = function() {
-                            return T(), M()
-                        }, w = function() {
-                            return g = !0, e.off("touchmove", M), e.off("scroll", M), e.off("resize", k), t(document.body).off("sticky_kit:recalc", k), n.off("sticky_kit:detach", w), n.removeData("sticky_kit"), n.css({
-                                position: "",
-                                bottom: "",
-                                top: "",
-                                width: ""
-                            }), S.position("position", ""), b ? (null == c && ("left" !== v && "right" !== v || n.insertAfter(E), E.remove()), n.removeClass(f)) : void 0
-                        }, e.on("touchmove", M), e.on("scroll", M), e.on("resize", k), t(document.body).on("sticky_kit:recalc", k), n.on("sticky_kit:detach", w), setTimeout(M, 0)
-                    }
-                }, s = 0, u = this.length; u > s; s++) o = this[s], r(t(o));
-            return this
-        }
-    }.call(this),
+
     /**
      * Single Page Nav Plugin
      * Copyright (c) 2014 Chris Wojcik <hello@chriswojcik.net>

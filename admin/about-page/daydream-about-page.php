@@ -662,13 +662,13 @@ class Daydream_About_Page {
 							$count = count( $actions_count );
 						}
 
-						if ( $getting_started_item[ 'recommended_actions' ] && isset( $count ) ) {
-							if ( $count == 0 ) {
-								echo '<span class="dashicons dashicons-yes"></span>';
-							} else {
-								echo '<span class="dashicons dashicons-no-alt"></span>';
-							}
-						}
+//						if ( $getting_started_item[ 'recommended_actions' ] && isset( $count ) ) {
+//							if ( $count == 0 ) {
+//								echo '<span class="dashicons dashicons-yes"></span>';
+//							} else {
+//								echo '<span class="dashicons dashicons-no-alt"></span>';
+//							}
+//						}
 						$this->display_button( $getting_started_item );
 						echo '</p>';
 					}

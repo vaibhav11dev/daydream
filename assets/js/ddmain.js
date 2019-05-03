@@ -44,6 +44,16 @@
 		}
 	    } );
 	}
+        /**
+	 * For back-to-top button
+	 */
+        function setBacktoTop() {
+            if ($(window).scrollTop() > 100) {
+                $(".back-to-top").removeClass("hide");
+            } else {
+                $(".back-to-top").addClass("hide");
+            }
+        }
 	/**
 	 * For Sticky Menu
 	 */
@@ -119,12 +129,24 @@
 	/** @type {boolean} */
 	i = !!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test( navigator.userAgent );
 	setColorMenu();
+	setBacktoTop();
 	$( window ).scroll( function () {
 	    setColorMenu();
+            setBacktoTop();
 	} );
 
-	//
-	$( ".js-stick" ).stick_in_parent();
+        // For Sticky Header
+        $(window).scroll(function () {
+            var div_height = $('.js-stick').height();
+            var sc = $(window).scrollTop();
+            if (sc > div_height) {
+                $(".js-stick").addClass("def-header-fixed");
+                $('.js-stick').siblings('.wrapper').css('margin-top',div_height+'px');
+            } else {
+                $(".js-stick").removeClass("def-header-fixed");
+                $('.js-stick').siblings('.wrapper').css('margin-top','0px');
+            }
+        });
 
 	//
 	$( ".nav-icon-toggle" ).on( "click", function () {

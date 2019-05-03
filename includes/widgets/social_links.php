@@ -125,13 +125,12 @@ class Daydream_Social_Links_Widget extends WP_Widget {
 	$instance[ 'stumbleupon_link' ]	 = sanitize_text_field( $new_instance[ 'stumbleupon_link' ] );
 	$instance[ 'github_link' ]	 = sanitize_text_field( $new_instance[ 'github_link' ] );
 	$instance[ 'lastfm_link' ]	 = sanitize_text_field( $new_instance[ 'lastfm_link' ] );
-	$instance[ 'rss_link' ]		 = sanitize_text_field( $new_instance[ 'rss_link' ] );
 
 	return $instance;
     }
 
     public function form( $instance ) {
-	$defaults	 = array( 'title' => __( 'We are social', 'daydream' ), 'linktarget' => '', 'icon_color' => '', 'boxed_icon' => 'No', 'boxed_color' => '', 'boxed_icon_radius' => '3px', 'tooltip_pos' => 'top', 'facebook_link' => '', 'twitter_link' => '', 'google-plus_link' => '', 'dribbble_link' => '', 'linkedin_link' => '', 'tumblr_link' => '', 'reddit_link' => '', 'yahoo_link' => '', 'deviantart_link' => '', 'vimeo_link' => '', 'youtube_link' => '', 'pinterest_link' => '', 'digg_link' => '', 'flickr_link' => '', 'skype_link' => '', 'instagram_link' => '', 'vk_link' => '', 'paypal_link' => '', 'dropbox_link' => '', 'soundcloud_link' => '', 'foursquare_link' => '', 'vine_link' => '', 'wordpress_link' => '', 'behance_link' => '', 'stumbleupon_link' => '', 'github_link' => '', 'lastfm_link' => '', 'rss_link' => '' );
+	$defaults	 = array( 'title' => __( 'We are social', 'daydream' ), 'linktarget' => '', 'icon_color' => '', 'boxed_icon' => 'No', 'boxed_color' => '', 'boxed_icon_radius' => '3px', 'tooltip_pos' => 'top', 'facebook_link' => '', 'twitter_link' => '', 'google-plus_link' => '', 'dribbble_link' => '', 'linkedin_link' => '', 'tumblr_link' => '', 'reddit_link' => '', 'yahoo_link' => '', 'deviantart_link' => '', 'vimeo_link' => '', 'youtube_link' => '', 'pinterest_link' => '', 'digg_link' => '', 'flickr_link' => '', 'skype_link' => '', 'instagram_link' => '', 'vk_link' => '', 'paypal_link' => '', 'dropbox_link' => '', 'soundcloud_link' => '', 'foursquare_link' => '', 'vine_link' => '', 'wordpress_link' => '', 'behance_link' => '', 'stumbleupon_link' => '', 'github_link' => '', 'lastfm_link' => '' );
 	$instance	 = wp_parse_args( (array) $instance, $defaults );
 	?>
 	<p>
@@ -281,9 +280,6 @@ class Daydream_Social_Links_Widget extends WP_Widget {
 	<p>
 	    <label for="<?php echo $this->get_field_id( 'lastfm_link' ); ?>"><?php echo esc_html_e( 'Lastfm Link:', 'daydream' ); ?></label>
 	    <input class="widefat" type="text" id="<?php echo esc_attr( $this->get_field_id( 'lastfm_link' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'lastfm_link' ) ); ?>" value="<?php echo esc_attr( $instance[ 'lastfm_link' ] ); ?>" />
-	</p>
-	<p>
-	    <label for="<?php echo $this->get_field_id( 'rss_link' ); ?>"><?php echo esc_html_e( 'RSS Link:', 'daydream' ); ?></label>
 	</p>
 	<?php
     }

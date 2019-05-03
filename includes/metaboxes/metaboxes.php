@@ -273,9 +273,9 @@ class daydream_ThemeFrameworkMetaboxes {
 	    if ( $tab_name == 'page' &&
 	    $post_type == 'product'
 	    ) {
-		printf( '<li%s><a href="%s">%s</a></li>', $class_active, esc_url( $tab_name ), esc_html( $tabs_names[ $post_type ] ) );
+		printf( '<li%s><a href="%s">%s</a></li>', $class_active, esc_attr( $tab_name ), esc_html( $tabs_names[ $post_type ] ) );
 	    } else {
-		printf( '<li%s><a href="%s"><i class="%s"></i>%s</a></li>', $class_active, esc_url( $tab_name ), esc_attr( $tabs_icons[ $tab_name ] ), esc_html( $tabs_names[ $tab_name ] ) );
+		printf( '<li%s><a href="%s"><i class="%s"></i>%s</a></li>', $class_active, esc_attr( $tab_name ), esc_attr( $tabs_icons[ $tab_name ] ), esc_html( $tabs_names[ $tab_name ] ) );
 	    }
 	}
 

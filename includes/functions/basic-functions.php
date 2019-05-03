@@ -587,7 +587,7 @@ function daydream_page_title_bar() {
 								<?php
 								if ( $description ) {
 									?>
-									<div class="taxonomy-description"><?php echo esc_html( $description ); ?></div>
+									<div class="taxonomy-description"><?php echo $description; ?></div>
 									<?php
 								}
 							}
@@ -815,7 +815,7 @@ function daydream_breadcrumb() {
 		}
 
 		if ( is_home() ) {
-			echo '<li>' . esc_html_e( 'Blog', 'daydream' ) . '</li>';
+			echo '<li>' . esc_html__( 'Blog', 'daydream' ) . '</li>';
 		}
 		if ( is_page() && !is_front_page() ) {
 			$parents	 = array();
@@ -855,13 +855,13 @@ function daydream_breadcrumb() {
 			echo '<li>' . get_the_title() . '</li>';
 		}
 		if ( is_tag() ) {
-			echo '<li>' . '"' . esc_html_e( 'Tag:', 'daydream' ) . '"' . single_tag_title( '', false ) . '</li>';
+			echo '<li>' . '"' . esc_html__( 'Tag:', 'daydream' ) . '"' . single_tag_title( '', false ) . '</li>';
 		}
 		if ( is_404() ) {
-			echo '<li>' . esc_html_e( "404 - Page not Found", 'daydream' ) . '</li>';
+			echo '<li>' . esc_html__( "404 - Page not Found", 'daydream' ) . '</li>';
 		}
 		if ( is_search() ) {
-			echo '<li>' . esc_html_e( "Search", 'daydream' ) . '</li>';
+			echo '<li>' . esc_html__( "Search", 'daydream' ) . '</li>';
 		}
 		if ( is_day() ) {
 			echo '<li><a href="' . esc_url( get_year_link( get_the_time( 'Y' ) ) ) . '">' . get_the_time( 'Y' ) . "</a></li>";

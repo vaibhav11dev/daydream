@@ -208,7 +208,7 @@ function daydream_comment_text() {
 function daydream_comment_moderation() {
 	global $comment;
 	if ( $comment->comment_approved == '0' )
-		echo '<p class="comment-unapproved moderation alert">' . esc_html_e( 'Your comment is awaiting moderation', 'daydream' ) . '</p>';
+		echo '<p class="comment-unapproved moderation alert">' . esc_html__( 'Your comment is awaiting moderation', 'daydream' ) . '</p>';
 }
 
 /**
@@ -229,8 +229,8 @@ function daydream_comment_navigation() {
 		$paged_links = paginate_comments_links( array(
 			'type'		 => 'array',
 			'echo'		 => false,
-			'prev_text'	 => esc_html_e( '&laquo; Previous Page', 'daydream' ),
-			'next_text'	 => esc_html_e( 'Next Page &raquo;', 'daydream' ) ) );
+			'prev_text'	 => esc_html__( '&laquo; Previous Page', 'daydream' ),
+			'next_text'	 => esc_html__( 'Next Page &raquo;', 'daydream' ) ) );
 
 		if ( $paged_links )
 			$comment_navigation = wp_kses_post( $open . join( ' ', $paged_links ) . $close );
@@ -286,7 +286,7 @@ function daydream_pings_callback( $comment, $args, $depth ) {
 	$when	 = apply_filters( 'daydream_pings_callback_when', (string) ' at ' );
 
 	if ( $comment->comment_approved == '0' )
-		echo '<p class="ping-unapproved moderation alert">' . esc_html_e( 'Your trackback is awaiting moderation.', 'daydream' ) . '</p>';
+		echo '<p class="ping-unapproved moderation alert">' . esc_html__( 'Your trackback is awaiting moderation.', 'daydream' ) . '</p>';
 	?>
 
 	<!--BEING .pings-->
@@ -353,13 +353,13 @@ function daydream_custom_comment_form() {
 
 	$fields = array();
 
-	$fields[ 'author' ]	 = '<div class="comment-form-author form-group"><input id="author" class="form-control" name="author" type="text" value="' . esc_attr( $commenter[ 'comment_author' ] ) . '" placeholder="' . esc_attr_e( 'Name*', 'daydream' ) . '" ' . $aria_req . $html_req . ' aria-label="' . esc_attr__( 'Name', 'daydream' ) . '"/></div>';
-	$fields[ 'email' ]	 = '<div class="comment-form-email form-group"><input id="email" class="form-control" name="email" ' . ( $html5 ? 'type="email"' : 'type="text"' ) . ' value="' . esc_attr( $commenter[ 'comment_author_email' ] ) . '" placeholder="' . esc_attr_e( 'Email*', 'daydream' ) . '" ' . $aria_req . $html_req . ' aria-label="' . esc_attr__( 'Email', 'daydream' ) . '"/></div>';
-	$fields[ 'url' ]	 = '<div class="comment-form-url form-group"><input id="url" class="form-control" name="url" ' . ( $html5 ? 'type="url"' : 'type="text"' ) . ' value="' . esc_attr( $commenter[ 'comment_author_url' ] ) . '" placeholder="' . esc_attr_e( 'Website', 'daydream' ) . '" aria-label="' . esc_attr__( 'URL', 'daydream' ) . '" /></div>';
+	$fields[ 'author' ]	 = '<div class="comment-form-author form-group"><input id="author" class="form-control" name="author" type="text" value="' . esc_attr( $commenter[ 'comment_author' ] ) . '" placeholder="' . esc_attr__( 'Name*', 'daydream' ) . '" ' . $aria_req . $html_req . ' aria-label="' . esc_attr__( 'Name', 'daydream' ) . '"/></div>';
+	$fields[ 'email' ]	 = '<div class="comment-form-email form-group"><input id="email" class="form-control" name="email" ' . ( $html5 ? 'type="email"' : 'type="text"' ) . ' value="' . esc_attr( $commenter[ 'comment_author_email' ] ) . '" placeholder="' . esc_attr__( 'Email*', 'daydream' ) . '" ' . $aria_req . $html_req . ' aria-label="' . esc_attr__( 'Email', 'daydream' ) . '"/></div>';
+	$fields[ 'url' ]	 = '<div class="comment-form-url form-group"><input id="url" class="form-control" name="url" ' . ( $html5 ? 'type="url"' : 'type="text"' ) . ' value="' . esc_attr( $commenter[ 'comment_author_url' ] ) . '" placeholder="' . esc_attr__( 'Website', 'daydream' ) . '" aria-label="' . esc_attr__( 'URL', 'daydream' ) . '" /></div>';
 
 	$comments_args = array(
 		'fields'				 => apply_filters( 'comment_form_default_fields', $fields ),
-		'comment_field'			 => '<div class="comment-form-comment form-group"><textarea id="comment" name="comment" placeholder="' . esc_attr_e('Comment', 'daydream') . '" class="form-control" rows="6" aria-required="true"></textarea></div>',
+		'comment_field'			 => '<div class="comment-form-comment form-group"><textarea id="comment" name="comment" placeholder="' . esc_attr__('Comment', 'daydream') . '" class="form-control" rows="6" aria-required="true"></textarea></div>',
 		'title_reply'			 => esc_html__( 'Leave A Comment', 'daydream' ),
 		'title_reply_to'		 => esc_html__( 'Leave A Comment', 'daydream' ),
 		/* translators: Opening and closing link tags. */

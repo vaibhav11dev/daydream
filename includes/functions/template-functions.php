@@ -1,32 +1,4 @@
 <?php
-
-/**
- * Activation redirects
- *
- * @since 1.0.0
- */
-function daydream_activate() {
-	add_option( 'dd_do_activation_redirect', true );
-}
-
-add_action( 'after_switch_theme', 'daydream_activate' );
-
-/**
- * Redirect to options page
- *
- * @since 1.0.0
- */
-//function daydream_redirect() {
-//	if ( get_option( 'dd_do_activation_redirect', false ) ) {
-//		delete_option( 'dd_do_activation_redirect' );
-//		if ( !isset( $_GET[ 'activate-multi' ] ) ) {
-//			wp_redirect( "themes.php?page=daydream-welcome" );
-//		}
-//	}
-//}
-//
-//add_action( 'admin_init', 'daydream_redirect' );
-
 /**
  * Functions which enhance the theme by hooking into WordPress
  *
@@ -183,7 +155,7 @@ add_action( 'admin_notices', 'daydream_importer_admin_notice' );
 function daydream_importer_admin_notice() {
 	if ( isset( $_GET[ 'imported' ] ) && $_GET[ 'imported' ] == 'success' ) {
 		echo '<div id="setting-error-settings_updated" class="updated settings-error"><p>';
-		printf( esc_html_e( 'Successfully imported demo data!', 'daydream' ) );
+		printf( esc_html__( 'Successfully imported demo data!', 'daydream' ) );
 		echo "</p></div>";
 	}
 }

@@ -7,6 +7,8 @@
  * @subpackage Admin
  * @since 1.0.0
  */
+if ( ! class_exists( 'Daydream_About_Page' ) ) {
+
 class Daydream_About_Page {
 
 	/**
@@ -942,6 +944,8 @@ class Daydream_About_Page {
 
 		return false;
 	}
+
+}
 
 }
 

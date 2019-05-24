@@ -49,6 +49,11 @@ function daydream_scripts() {
 	wp_enqueue_script( 'ddcore', get_template_directory_uri() . '/assets/js/ddcore.min.js', array( 'jquery' ), DAYDREAM_VERSION, true );
 	wp_enqueue_script( 'ddmain', get_template_directory_uri() . '/assets/js/ddmain.js', array( 'jquery' ), DAYDREAM_VERSION, true );
 	wp_enqueue_script( 'daydream-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix.js', array(), '1.0.0', true );
+
+        $dd_sticky_header = daydream_theme_mod('dd_sticky_header');
+        wp_localize_script( 'ddmain', 'ddmain_var', array(
+		'is_sticky'		 => $dd_sticky_header,
+	) );
 }
 
 add_action( 'wp_enqueue_scripts', 'daydream_scripts' );

@@ -5476,6 +5476,10 @@ table td {
     width: 75%;
 }
 
+.woocommerce-view-order .woocommerce-order-downloads{
+    margin-bottom: 20px
+}
+
 /*For WooCommerce Input Style like .btn*/
 .single-product .product .single_add_to_cart_button,
 #review_form .submit,

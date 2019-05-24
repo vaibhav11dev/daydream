@@ -139,12 +139,14 @@
         $(window).scroll(function () {
             var div_height = $('.js-stick').height();
             var sc = $(window).scrollTop();
-            if (sc > div_height) {
-                $(".js-stick").addClass("def-header-fixed");
-                $('.js-stick').siblings('.wrapper').css('margin-top',div_height+'px');
-            } else {
-                $(".js-stick").removeClass("def-header-fixed");
-                $('.js-stick').siblings('.wrapper').css('margin-top','0px');
+            if (ddmain_var.is_sticky == 1) {
+                if (sc > div_height) {
+                    $(".js-stick").addClass("def-header-fixed");
+                    $('.js-stick').siblings('.wrapper').css('margin-top',div_height+'px');
+                } else {
+                    $(".js-stick").removeClass("def-header-fixed");
+                    $('.js-stick').siblings('.wrapper').css('margin-top','0px');
+                }
             }
         });
 

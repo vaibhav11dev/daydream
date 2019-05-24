@@ -904,21 +904,23 @@ function daydream_breadcrumb() {
 function daydream_layout_class( $type = 1 ) {
 	global $post, $wp_query;
 
+        $post_id = '';
+        if ( $wp_query->is_posts_page ) {
+            $post_id = get_option( 'page_for_posts' );
+        } elseif ( is_buddypress() ) {
+            $post_id = restora_bp_get_id();
+        } elseif ( class_exists( 'Woocommerce' ) && is_shop() ) {
+            $post_id = wc_get_page_id('shop');
+        } else {
+            $post_id = isset( $post->ID ) ? $post->ID : '';
+        }
+
 	$dd_layout					 = daydream_theme_mod( 'dd_layout', '2cl' );
-	$dd_post_layout				 = daydream_theme_mod( 'dd_post_layout', 'two' );
+	$dd_post_layout				 = daydream_theme_mod( 'dd_post_layout', '2' );
 	$dd_opt1_width_content		 = daydream_theme_mod( 'dd_opt1_width_content', '9' );
-	$daydream_sidebar_position	 = get_post_meta( $post->ID, 'daydream_sidebar_position', true );
+	$daydream_sidebar_position	 = get_post_meta( $post_id, 'daydream_sidebar_position', true );
 	if ( !$daydream_sidebar_position ) {
 		$daydream_sidebar_position = 'default';
-	}
-
-	$post_id = '';
-	if ( $wp_query->is_posts_page ) {
-		$post_id = get_option( 'page_for_posts' );
-	} elseif ( is_buddypress() ) {
-		$post_id = daydream_bp_get_id();
-	} else {
-		$post_id = isset( $post->ID ) ? $post->ID : '';
 	}
 
 	$layout_css = '';

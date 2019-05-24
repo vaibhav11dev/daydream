@@ -507,7 +507,11 @@ if ( defined( 'YITH_WCWL' ) && !function_exists( 'yith_wcwl_add_wishlist_on_loop
 		global $woocommerce;
 
 		$order				 = wc_get_order( $order_id );
-		$order_item_product	 = new WC_Order_Item_Product();
+                $downloads             = $order->get_downloadable_items();
+                $show_downloads        = $order->has_downloadable_item() && $order->is_download_permitted();
+                if ( $show_downloads ) {
+                        wc_get_template( 'order/order-downloads.php', array( 'downloads' => $downloads, 'show_title' => true ) );
+                }
 		?>
 	<div class="daydream-order-details woocommerce-content-box table-responsive">
 		<h2><?php esc_html_e( 'Order Details', 'daydream' ); ?></h2>
@@ -529,7 +533,7 @@ if ( defined( 'YITH_WCWL' ) && !function_exists( 'yith_wcwl_add_wishlist_on_loop
 							<td class="filler-td">&nbsp;</td>
 							<td class="filler-td">&nbsp;</td>
 							<th scope="row"><?php echo esc_html($total[ 'label' ]); ?></th>
-							<td class="product-total"><?php echo esc_html($total[ 'value' ]); ?></td>
+							<td class="product-total"><?php echo $total[ 'value' ]; ?></td>
 						</tr>
 						<?php
 					endforeach;
@@ -565,21 +569,6 @@ if ( defined( 'YITH_WCWL' ) && !function_exists( 'yith_wcwl_add_wishlist_on_loop
 									echo apply_filters( 'woocommerce_order_item_name', sprintf( '<a href="%s">%s</a>', esc_url( get_permalink( $item[ 'product_id' ] ) ), $item[ 'name' ] ), $item );
 
 								wc_display_item_meta( $item );
-
-								if ( $_product && $_product->exists() && $_product->is_downloadable() && $order->is_download_permitted() ) {
-
-									$download_files	 = $order_item_product->get_item_downloads();
-									$i				 = 0;
-									$links			 = array();
-
-									foreach ( $download_files as $download_id => $file ) {
-										$i++;
-
-										$links[] = '<small><a href="' . esc_url( $file[ 'download_url' ] ) . '">' . sprintf( __( 'Download file%s', 'daydream' ), ( count( $download_files ) > 1 ? ' ' . $i . ': ' : ': ' ) ) . esc_html( $file[ 'name' ] ) . '</a></small>';
-									}
-
-									echo '<br/>' . implode( '<br/>', $links );
-								}
 								?>
 							</td>
 							<td class="col-quantity">

@@ -22,11 +22,16 @@ if ( get_header_image() ) {
     $daydream_dynamic_css .= '
 		.header-bg {	
 			background-image: url(' . esc_url( get_header_image() ) . ');
-			background-color: ' . esc_attr( $dd_header_background_color ) . ';
 			background-position: ' . esc_attr( $dd_header_image_background_position ) . ';
 			background-repeat: ' . esc_attr( $dd_header_image_background_repeat ) . ';
 			background-size: ' . esc_attr( $dd_header_image ) . ';
 			box-shadow: none;
+		}
+		';
+} else {
+    $daydream_dynamic_css .= '
+		.header-bg {	
+			background-color: ' . esc_attr( $dd_header_background_color ) . ';
 		}
 		';
 }
@@ -121,18 +126,6 @@ if ( $daydream_content_top_bottom_padding ) {
 		padding-left: 0;
 		padding-right: 0;
 }
-';
-}
-
-/* -----------------------------------------------------------------
-  [Header Section Style]
- */
-
-if ( daydream_theme_mod( 'dd_sticky_header' ) == 0 ) {
-    $daydream_dynamic_css .= '
-	.header-small {
-		display: none;
-	}
 ';
 }
 

@@ -6,6 +6,7 @@
  * @package Daydream
  * @since Daydream 1.1.31
  */
+if ( ! class_exists( 'Daydream_Plugin_Install_Helper' ) ) {
 
 /**
  * Class Daydream_Plugin_Install_Helper
@@ -154,5 +155,7 @@ class Daydream_Plugin_Install_Helper {
 		'daydream-plugin-install-helper', 'pagenow', array( 'import' )
 		);
 	}
+
+}
 
 }

@@ -5,6 +5,7 @@
  *
  * @package Daydream
  */
+if ( ! class_exists( 'Daydream_Admin' ) ) {
 
 /**
  * Class Daydream_Admin
@@ -235,6 +236,8 @@ class Daydream_Admin {
 		);
 		Daydream_About_Page::init( apply_filters( 'daydream_about_page_array', $config ) );
 	}
+
+}
 
 }
 

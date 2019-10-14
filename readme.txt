@@ -1,4 +1,4 @@
-=== daydream ===
+﻿=== daydream ===
 
 Contributors: themevedanta, vpparmar
 Tags: e-commerce, grid-layout, footer-widgets, blog, photography, buddypress, two-columns, left-sidebar, right-sidebar, full-width-template, sticky-post, threaded-comments, microformats, post-formats, flexible-header, featured-images, custom-background, custom-colors, custom-header, custom-menu, theme-options, translation-ready
@@ -14,7 +14,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-Daydream is multipurpose responsive WordPress theme with light weight. Ready to use for any purpose such as business, corporate, agency, app, news, blog, magazine, cleaning services, construction, designs, freelancer, restaurant and many more. Daydream templates are built with super fast light weight Elementor page builder with drag and drop function so your website will not load heavily. We have added lots of options in customizer panel so you don’t need any coding knowledge.
+Daydream is multipurpose responsive WordPress theme with light weight. Ready to use for any purpose such as business, corporate, agency, app, news, blog, magazine, cleaning services, construction, designs, freelancer, restaurant and many more. Daydream templates are built with super fast light weight Elementor page builder with drag and drop function so your website will not load heavily. We have added lots of options in customizer panel so you do not need any coding knowledge.
 
 == Installation ==
 
@@ -28,6 +28,12 @@ Daydream is multipurpose responsive WordPress theme with light weight. Ready to 
 Yes! `daydream` core features are absolutely free.
 
 == Changelog ==
+
+v1.1.2
+* New: Support to WordPress 5.2
+* New: Support to WooCommerce 3.7.1
+* Fixed: Improve download product design
+* Fixed: Sticky header bugs
 
 = 1.1.1 =
 * Update latest version WordPress 5.1.x and Woocommerce 3.5.x

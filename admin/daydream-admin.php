@@ -47,7 +47,7 @@ class Daydream_Admin {
 			/* translators: s - theme name */
 			'welcome_title'			 => apply_filters( 'daydream_about_page_filter', sprintf( __( 'Welcome to %s! - Version ', 'daydream' ), 'Daydream' ), 'welcome_title' ),
 			// Main welcome content
-			'welcome_content'		 => apply_filters( 'daydream_about_page_filter', esc_html__( 'Daydream is multipurpose responsive WordPress theme with light weight. Ready to use for any purpose such as business, corporate, agency, app, news, blog, magazine, cleaning services, construction, designs, freelancer, restaurant and many more. Daydream templates are built with super fast light weight Elementor page builder with drag and drop function so your website will not load heavily. We have added lots of options in customizer panel so you don’t need any coding knowledge.', 'daydream' ), 'welcome_content' ),
+			'welcome_content'		 => apply_filters( 'daydream_about_page_filter', esc_html__( 'Daydream is multipurpose responsive WordPress theme with light weight. Ready to use for any purpose such as business, corporate, agency, app, news, blog, magazine, cleaning services, construction, designs, freelancer, restaurant and many more. Daydream templates are built with super fast light weight Elementor page builder with drag and drop function so your website will not load heavily. We have added lots of options in customizer panel so you do not need any coding knowledge.', 'daydream' ), 'welcome_content' ),
 			/**
 			 * Tabs array.
 			 *
@@ -111,7 +111,7 @@ class Daydream_Admin {
 				),
 				'third'	 => array(
 					'title'					 => esc_html__( 'Go to the Customizer', 'daydream' ),
-					'text'					 => esc_html__( 'Lots of options in WordPress Customizer so you don’t need any coding knowledge.', 'daydream' ),
+					'text'					 => esc_html__( 'Lots of options in WordPress Customizer so you do not need any coding knowledge.', 'daydream' ),
 					'button_label'			 => esc_html__( 'Go to the Customizer', 'daydream' ),
 					'button_link'			 => esc_url( admin_url( 'customize.php' ) ),
 					'is_button'				 => true,
@@ -167,7 +167,7 @@ class Daydream_Admin {
 					),
 					array(
 						'title'			 => __( 'Advance Theme Options', 'daydream' ),
-						'description'	 => __( 'Lots of advance options in WordPress Customizer so you don’t need any coding knowledge', 'daydream' ),
+						'description'	 => __( 'Lots of advance options in WordPress Customizer so you do not need any coding knowledge', 'daydream' ),
 						'is_in_lite'	 => 'false',
 						'is_in_pro'		 => 'true',
 					),

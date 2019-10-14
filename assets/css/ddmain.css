@@ -2412,6 +2412,9 @@ body.off-canvas-cart-open:after {
     -moz-box-shadow: 0 5px 15px rgba(0,0,0,.1);    
     -o-box-shadow: 0 5px 15px rgba(0,0,0,.1); 
 }
+.admin-bar .header.def-header-fixed {
+	top: 32px;
+}
 @keyframes slide-down{
 0% {
     transform: translateY(-100%);
@@ -5671,7 +5674,6 @@ h3.widget-title::after {
     vertical-align: baseline;
     border-radius: .25em;
     background: #27CBC0;
-    z-index: 1;
     position: absolute;
     left: 30px;
 }

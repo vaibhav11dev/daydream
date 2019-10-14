@@ -420,7 +420,7 @@ if ( !function_exists( 'daydream_customizer_options' ) ) {
 						'id'				 => 'dd_footer_content',
 						'type'				 => 'textarea',
 						'title'				 => __( 'Custom Footer', 'daydream' ),
-						'default'			 => '<div id="copyright"><a href="' . esc_url( $global_value[ 'home_url' ] ) . 'daydream-multipurpose-wordpress-theme/">daydream</a> theme by Themevedanta - Powered by <a href="'.esc_url( "http://wordpress.org" ).'">WordPress</a></div>',
+						'default'			 => '<div id="copyright"><a href="' . esc_url( $global_value[ 'home_url' ] ) . 'daydream-multipurpose-wordpress-theme/">daydream</a> theme by <a href="'.esc_url( $global_value[ 'home_url' ] ).'">Themevedanta</a> - Powered by WordPress</div>',
 						'selector'			 => '.custom-footer',
 						'render_callback'	 => 'daydream_footer_content'
 					),

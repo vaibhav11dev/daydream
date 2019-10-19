@@ -65,7 +65,7 @@ function daydream_after_setup() {
 		//remove_action( 'woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 20 ); // Remove Duplicated Checkout Button
 	}
 
-	$dd_width_layout = daydream_theme_mod( 'dd_width_layout', 'fixed' );
+	$dd_width_layout = daydream_theme_mod( 'dd_width_layout', 'fluid' );
 
 	if ( $dd_width_layout == "fixed" ) {
 		$defaults = array(

@@ -20,7 +20,7 @@ get_header();
 
 			<?php
 			$thumbnail = '';
-			if ( daydream_theme_mod( 'dd_blog_style' ) == 'thumbnail_on_side' ) {
+			if ( daydream_theme_mod( 'dd_blog_style', 'grid' ) == 'thumbnail_on_side' ) {
 				$thumbnail = ' post-thumbnail';
 			}
 			?>

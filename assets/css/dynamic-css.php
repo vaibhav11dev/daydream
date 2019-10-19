@@ -40,8 +40,8 @@ if ( get_header_image() ) {
 /* -----------------------------------------------------------------
   [General Layout Options]
  */
-$dd_width_layout		 = daydream_theme_mod( 'dd_width_layout' );
-$dd_width_px			 = daydream_theme_mod( 'dd_width_px' );
+$dd_width_layout		 = daydream_theme_mod( 'dd_width_layout', 'fluid' );
+$dd_width_px			 = daydream_theme_mod( 'dd_width_px', '1200' );
 $dd_custom_width_px		 = daydream_theme_mod( 'dd_custom_width_px' );
 $dd_container_width_px		 = (int) $dd_width_px - 30;
 $dd_container_custom_width_px	 = (int) $dd_custom_width_px - 30;
@@ -135,7 +135,7 @@ if ( $daydream_content_top_bottom_padding ) {
 $dd_pagetitlebar_height		 = daydream_theme_mod( 'dd_pagetitlebar_height', 'medium' );
 $daydream_page_title_bar_height	 = get_post_meta( $post_id, 'daydream_page_title_bar_height', true );
 
-$dd_pagetitlebar_background_color	 = daydream_theme_mod( 'dd_pagetitlebar_background_color', '' );
+$dd_pagetitlebar_background_color	 = daydream_theme_mod( 'dd_pagetitlebar_background_color', '#f8f8f8' );
 $daydream_page_title_bar_bg_color	 = get_post_meta( $post_id, 'daydream_page_title_bar_bg_color', true );
 // 1.2 Page Title Bar Background Color
 if ( $daydream_page_title_bar_bg_color ) {
@@ -173,7 +173,7 @@ if ( $dd_footer_image_src ) {
 ';
 }
 
-$dd_footer_bg_color = daydream_theme_mod( 'dd_footer_bg_color', '' );
+$dd_footer_bg_color = daydream_theme_mod( 'dd_footer_bg_color', '#222222' );
 if ( ! empty( $dd_footer_bg_color ) ) {
     $daydream_dynamic_css .= '
 .footer {
@@ -218,9 +218,9 @@ for ( $i = 1; $i < 7; $i ++ ) {
   [General Style Options]
  */
 
-$dd_main_menu_hover_font_color	 = daydream_theme_mod( 'dd_main_menu_hover_font_color' );
-$dd_sub_menu_font_color		 = daydream_theme_mod( 'dd_sub_menu_font_color' );
-$dd_sub_menu_hover_font_color	 = daydream_theme_mod( 'dd_sub_menu_hover_font_color' );
+$dd_main_menu_hover_font_color	 = daydream_theme_mod( 'dd_main_menu_hover_font_color', '#222222' );
+$dd_sub_menu_font_color		 = daydream_theme_mod( 'dd_sub_menu_font_color', '#ffffff' );
+$dd_sub_menu_hover_font_color	 = daydream_theme_mod( 'dd_sub_menu_hover_font_color', '#ffffff' );
 
 $daydream_dynamic_css .= '
 .inner-nav > li > a:hover, 

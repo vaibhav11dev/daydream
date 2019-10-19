@@ -26,7 +26,7 @@ if ( empty( $product ) || !$product->is_visible() ) {
 	return;
 }
 
-$dd_woocommerce_layout	 = daydream_theme_mod( 'dd_woocommerce_layout' );
+$dd_woocommerce_layout	 = daydream_theme_mod( 'dd_woocommerce_layout', '2' );
 $woo_product_layout		 = (12 / $dd_woocommerce_layout);
 
 if ( is_product() && $woocommerce_loop[ 'name' ] == 'related' ) {

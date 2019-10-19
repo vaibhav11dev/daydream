@@ -185,7 +185,7 @@ function daydream_post_format_icon() {
 function daydream_post_metadata() {
 	global $authordata;
 
-	if ( daydream_theme_mod( 'dd_meta_date' ) == 1 ) {
+	if ( daydream_theme_mod( 'dd_meta_date', 0 ) == 1 ) {
 		?>
 		<li class="published updated">
 			<a href="<?php the_permalink() ?>"><?php the_time( get_option( 'date_format' ) ); ?></a>
@@ -193,7 +193,7 @@ function daydream_post_metadata() {
 		<?php
 	}
 
-	if ( daydream_theme_mod( 'dd_meta_author' ) == 1 ) {
+	if ( daydream_theme_mod( 'dd_meta_author', 0 ) == 1 ) {
 		?>
 		<li class="author vcard">
 			<?php
@@ -210,7 +210,7 @@ function daydream_post_metadata() {
 		<?php
 	}
 
-	if ( daydream_get_terms( 'tags' ) && daydream_theme_mod( 'dd_meta_tags' ) == 1 ) :
+	if ( daydream_get_terms( 'tags' ) && daydream_theme_mod( 'dd_meta_tags', 0 ) == 1 ) :
 		?>
 		<li class="meta-tags">
 			<?php echo wp_kses_post( daydream_get_terms( 'tags' ) ); ?>
@@ -218,7 +218,7 @@ function daydream_post_metadata() {
 		<?php
 	endif;
 
-	if ( comments_open() && daydream_theme_mod( 'dd_meta_comments' ) == 1 ) :
+	if ( comments_open() && daydream_theme_mod( 'dd_meta_comments', 0 ) == 1 ) :
 		?>
 		<li class="comment-count">
 			<?php comments_popup_link( __( 'Leave a Comment', 'daydream' ), __( '1 Comment', 'daydream' ), __( '% Comments', 'daydream' ) ); ?>

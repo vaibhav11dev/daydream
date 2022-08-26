@@ -579,7 +579,7 @@ if ( !function_exists( 'daydream_customizer_options' ) ) {
 						'required'	 => array(
 							array( 'dd_pagetitlebar_layout', '=', '1' )
 						),
-						'default'	 => 'titlebar_left',
+						'default'	 => 'titlebar_center',
 					),
 					array(
 						'subtitle'	 => __( 'Select the height for your pagetitle bar', 'daydream' ),
@@ -678,7 +678,7 @@ if ( !function_exists( 'daydream_customizer_options' ) ) {
 							'number_pagination'	 => __( 'Number Pagination', 'daydream' ),
 						),
 						'title'		 => __( 'Pagination Type', 'daydream' ),
-						'default'	 => 'pagination',
+						'default'	 => 'number_pagination',
 					),
 					array(
 						'subtitle'	 => __( 'Choose Enable button if you want to display edit post link', 'daydream' ),
@@ -1200,7 +1200,7 @@ if ( !function_exists( 'daydream_customizer_options' ) ) {
 							'uppercase'	 => __( 'UPPERCASE', 'daydream' ),
 						),
 						'title'		 => __( 'Set the main menu text transform', 'daydream' ),
-						'default'	 => 'none',
+						'default'	 => 'uppercase',
 						'transport'	 => 'postMessage',
 						'js_vars'	 => array(
 							array(

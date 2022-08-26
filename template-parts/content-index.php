@@ -6,17 +6,17 @@
  * @package Daydream
  */
 if ( have_posts() ) :
-	if ( daydream_theme_mod( 'dd_blog_style', 'grid' ) == 'grid' ) {
+	if ( daydream_theme_mod( 'dd_blog_style' ) == 'grid' ) {
 		?>
 		<div class="row multi-columns-row post-columns">
 			<?php
 		}
 		while ( have_posts() ) : the_post();
 
-			$dd_post_layout		 = daydream_theme_mod( 'dd_post_layout', '2' );
+			$dd_post_layout		 = daydream_theme_mod( 'dd_post_layout' );
 			$post_layout_class	 = (12 / $dd_post_layout);
 
-			if ( daydream_theme_mod( 'dd_blog_style', 'grid' ) == 'grid' ) {
+			if ( daydream_theme_mod( 'dd_blog_style' ) == 'grid' ) {
 				?>
 				<div class="col-sm-<?php echo esc_attr($post_layout_class); ?> col-md-<?php echo esc_attr($post_layout_class); ?> col-lg-<?php echo esc_attr($post_layout_class); ?>">
 					<?php
@@ -26,14 +26,14 @@ if ( have_posts() ) :
 				<article id="post-<?php esc_attr(the_ID()); ?>" class="<?php esc_attr(semantic_entries()); ?> post format-<?php echo esc_attr(daydream_post_format()); ?>">
 
 					<?php
-					if ( daydream_theme_mod( 'dd_blog_style', 'grid' ) == 'thumbnail_on_side' ) {
+					if ( daydream_theme_mod( 'dd_blog_style' ) == 'thumbnail_on_side' ) {
 						?>
 						<div class="row">
 							<div class="col-sm-5">
 								<?php
 							}
 							daydream_post_thumbnail();
-							if ( daydream_theme_mod( 'dd_blog_style', 'grid' ) == 'thumbnail_on_side' ) {
+							if ( daydream_theme_mod( 'dd_blog_style' ) == 'thumbnail_on_side' ) {
 								?>
 							</div>
 							<div class="col-sm-7">
@@ -47,7 +47,7 @@ if ( have_posts() ) :
 									<?php
 									daydream_post_heading();
 
-									if ( daydream_theme_mod( 'dd_header_meta', 0 ) == 1 ) {
+									if ( daydream_theme_mod( 'dd_header_meta' ) == 1 ) {
 										?>
 										<ul class="post-meta">
 											<?php daydream_post_metadata(); ?> 
@@ -67,7 +67,7 @@ if ( have_posts() ) :
 
 							</div>
 							<?php
-							if ( daydream_theme_mod( 'dd_blog_style', 'grid' ) == 'thumbnail_on_side' ) {
+							if ( daydream_theme_mod( 'dd_blog_style' ) == 'thumbnail_on_side' ) {
 								?>
 							</div>
 						</div>
@@ -77,13 +77,13 @@ if ( have_posts() ) :
 				</article>
 				<!-- END BLOG CONTENT -->
 				<?php
-				if ( daydream_theme_mod( 'dd_blog_style', 'grid' ) == 'grid' ) {
+				if ( daydream_theme_mod( 'dd_blog_style' ) == 'grid' ) {
 					?>
 				</div>			
 				<?php
 			}
 		endwhile;
-		if ( daydream_theme_mod( 'dd_blog_style', 'grid' ) == 'grid' ) {
+		if ( daydream_theme_mod( 'dd_blog_style' ) == 'grid' ) {
 			?>
 		</div>
 		<?php

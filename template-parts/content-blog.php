@@ -12,7 +12,7 @@ $default_posts_per_page	 = get_option( 'posts_per_page', 6 );
 $wp_query->query( "posts_per_page=$default_posts_per_page&paged=$paged" );
 
 if ( $wp_query->have_posts() ) :
-	if ( daydream_theme_mod( 'dd_blog_style', 'grid' ) == 'grid' ) {
+	if ( daydream_theme_mod( 'dd_blog_style' ) == 'grid' ) {
 		?>
 		<div class="row multi-columns-row post-columns">
 			<?php
@@ -20,10 +20,10 @@ if ( $wp_query->have_posts() ) :
 		while ( $wp_query->have_posts() ) :
 			$wp_query->the_post();
 
-			$dd_post_layout		 = daydream_theme_mod( 'dd_post_layout', '2' );
+			$dd_post_layout		 = daydream_theme_mod( 'dd_post_layout' );
 			$post_layout_class	 = (12 / $dd_post_layout);
 
-			if ( daydream_theme_mod( 'dd_blog_style', 'grid' ) == 'grid' ) {
+			if ( daydream_theme_mod( 'dd_blog_style' ) == 'grid' ) {
 				?>
 				<div class="col-sm-<?php echo esc_attr($post_layout_class); ?> col-md-<?php echo esc_attr($post_layout_class); ?> col-lg-<?php echo esc_attr($post_layout_class); ?>">
 					<?php
@@ -34,7 +34,7 @@ if ( $wp_query->have_posts() ) :
 
 
 					<?php
-					if ( daydream_theme_mod( 'dd_blog_style', 'grid' ) == 'thumbnail_on_side' ) {
+					if ( daydream_theme_mod( 'dd_blog_style' ) == 'thumbnail_on_side' ) {
 						?>
 						<div class="row">
 							<div class="col-sm-5">
@@ -43,7 +43,7 @@ if ( $wp_query->have_posts() ) :
 
 							daydream_post_thumbnail();
 
-							if ( daydream_theme_mod( 'dd_blog_style', 'grid' ) == 'thumbnail_on_side' ) {
+							if ( daydream_theme_mod( 'dd_blog_style' ) == 'thumbnail_on_side' ) {
 								?>
 							</div>
 							<div class="col-sm-7">
@@ -57,7 +57,7 @@ if ( $wp_query->have_posts() ) :
 									<?php
 									daydream_post_heading();
 
-									if ( daydream_theme_mod( 'dd_header_meta', 0 ) == 1 ) {
+									if ( daydream_theme_mod( 'dd_header_meta' ) == 1 ) {
 										?>
 										<ul class="post-meta">
 											<?php daydream_post_metadata(); ?> 
@@ -77,7 +77,7 @@ if ( $wp_query->have_posts() ) :
 
 							</div>
 							<?php
-							if ( daydream_theme_mod( 'dd_blog_style', 'grid' ) == 'thumbnail_on_side' ) {
+							if ( daydream_theme_mod( 'dd_blog_style' ) == 'thumbnail_on_side' ) {
 								?>
 							</div>
 						</div>
@@ -87,13 +87,13 @@ if ( $wp_query->have_posts() ) :
 				</article>
 				<!-- END BLOG CONTENT -->
 				<?php
-				if ( daydream_theme_mod( 'dd_blog_style', 'grid' ) == 'grid' ) {
+				if ( daydream_theme_mod( 'dd_blog_style' ) == 'grid' ) {
 					?>
 				</div>			
 				<?php
 			}
 		endwhile;
-		if ( daydream_theme_mod( 'dd_blog_style', 'grid' ) == 'grid' ) {
+		if ( daydream_theme_mod( 'dd_blog_style' ) == 'grid' ) {
 			?>
 		</div>
 		<?php

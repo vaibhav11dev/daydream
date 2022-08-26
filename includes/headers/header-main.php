@@ -62,7 +62,7 @@ if ( is_page() ) {
             ?>         
         </div>
 
-        <?php if ( daydream_theme_mod( 'dd_mobile_menu', 1 ) == 1 ): ?>
+        <?php if ( daydream_theme_mod( 'dd_mobile_menu', '1' ) == 1 ): ?>
             <!-- OPEN MOBILE MENU -->
             <div class="main-nav-toggle">
                 <div class="nav-icon-toggle" data-toggle="collapse" data-target="#custom-collapse">
@@ -73,7 +73,7 @@ if ( is_page() ) {
             </div>
         <?php endif ?>
 
-        <?php if ( (daydream_theme_mod( 'dd_woo_cart', 1 ) == 1) || (daydream_theme_mod( 'dd_searchbox', 1 ) == 1) ): ?>
+        <?php if ( (daydream_theme_mod( 'dd_woo_cart' ) == 1) || (daydream_theme_mod( 'dd_searchbox' ) == 1) ): ?>
             <!-- WIDGETS MENU -->
             <div class="inner-header pull-right">
                 <div class="menu-extras clearfix">
@@ -100,8 +100,8 @@ if ( is_page() ) {
 
                     <!-- SEARCH -->
                     <?php
-                    $dd_searchbox = daydream_theme_mod( 'dd_searchbox', 1 );
-                    if ( $dd_searchbox == 1 ) {
+                    $dd_searchbox = daydream_theme_mod( 'dd_searchbox', '1' );
+                    if ( $dd_searchbox == "1" ) {
                         ?>
                         <div class="menu-item hidden-xxs">
                             <div class="extras-search">
@@ -120,7 +120,7 @@ if ( is_page() ) {
 
         <!-- MAIN MENU -->
         <?php
-        if ( daydream_theme_mod( 'dd_primary_menu', 1 ) == 1 && has_nav_menu( 'primary-menu' ) ):
+        if ( daydream_theme_mod( 'dd_primary_menu', '1' ) == 1 && has_nav_menu( 'primary-menu' ) ):
 
             wp_nav_menu( array( 'theme_location' => 'primary-menu', 'menu_class' => 'inner-nav pull-right', 'container' => 'nav', 'container_class' => 'dd-main-simplemenu main-nav collapse clearfix', 'container_id' => 'custom-collapse', 'walker' => new Daydream_Walker_Nav_Menu() ) );
         endif;

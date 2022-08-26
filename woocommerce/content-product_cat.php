@@ -19,7 +19,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$dd_woocommerce_layout	 = daydream_theme_mod( 'dd_woocommerce_layout', '2' );
+$dd_woocommerce_layout	 = daydream_theme_mod( 'dd_woocommerce_layout' );
 $woo_product_layout		 = (12 / (int)$dd_woocommerce_layout);
 
 $shop_col_class = 'col-sm-' . $woo_product_layout . ' col-md-' . $woo_product_layout . ' col-lg-' . $woo_product_layout . '';

@@ -16,7 +16,7 @@
 			<?php
 			daydream_post_heading();
 
-			if ( daydream_theme_mod( 'dd_header_meta', 0 ) == 1 ) {
+			if ( daydream_theme_mod( 'dd_header_meta' ) == 1 ) {
 				?>
 				<ul class="post-meta">
 					<?php daydream_post_metadata(); ?> 

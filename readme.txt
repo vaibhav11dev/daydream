@@ -2,10 +2,10 @@
 
 Contributors: themevedanta, vpparmar
 Tags: e-commerce, grid-layout, footer-widgets, blog, photography, buddypress, two-columns, left-sidebar, right-sidebar, full-width-template, sticky-post, threaded-comments, microformats, post-formats, flexible-header, featured-images, custom-background, custom-colors, custom-header, custom-menu, theme-options, translation-ready
-Requires at least: WordPress 4.8
-Tested up to: WordPress 5.1
-Stable tag: 1.1.0
-Requires PHP: 5.6.25
+Requires at least: WordPress 5.9.2
+Tested up to: WordPress 6.0.1
+Stable tag: 1.1.3
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,6 +28,11 @@ Daydream is multipurpose responsive WordPress theme with light weight. Ready to 
 Yes! `daydream` core features are absolutely free.
 
 == Changelog ==
+
+v1.1.3
+* New: Support to WordPress 6.0.1
+* New: Support to WooCommerce 6.8.2
+* Fixed: Remove deprecated function of php
 
 v1.1.2
 * New: Support to WordPress 5.2

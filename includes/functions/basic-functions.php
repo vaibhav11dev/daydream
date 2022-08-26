@@ -368,9 +368,9 @@ if ( !function_exists( 'daydream_hexdarker' ) ) {
 	function daydream_hexdarker( $hex, $factor = 10 ) {
 		$new_hex = '';
 
-		$base[ 'R' ] = hexdec( $hex{0} . $hex{1} );
-		$base[ 'G' ] = hexdec( $hex{2} . $hex{3} );
-		$base[ 'B' ] = hexdec( $hex{4} . $hex{5} );
+		$base[ 'R' ] = hexdec( $hex[0] . $hex[1] );
+		$base[ 'G' ] = hexdec( $hex[2] . $hex[3] );
+		$base[ 'B' ] = hexdec( $hex[4] . $hex[5] );
 
 		foreach ( $base as $k => $v ) {
 			$amount		 = $v / 100;

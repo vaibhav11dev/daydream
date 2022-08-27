@@ -19,6 +19,11 @@
     </head>
 
     <body <?php body_class(); ?>>
+
+		<?php
+		wp_body_open();
+		?>
+
         <?php
         $dd_back_to_top = daydream_theme_mod( 'dd_back_to_top', 1 );
         if ( $dd_back_to_top == 1 ) {
